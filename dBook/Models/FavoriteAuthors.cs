@@ -7,15 +7,12 @@ using System.Web;
 
 namespace dBook.Models
 {
-    [Table("BookComments")]
-    public class BookComments
+    [Table("FavoriteAuthors")]
+    public class FavoriteAuthors
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BOOK_COMMENT_ID { get; set; }
-        public string COMMENT { get; set; }
-        public int POINT { get; set; }
-        public Books BOOK { get; set; }
+        public int FAVORITE_AUTHORS_ID { get; set; }
+        public Authors AUTHOR { get; set; }
         public User USER { get; set; }
-
     }
 }

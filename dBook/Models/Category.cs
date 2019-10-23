@@ -7,15 +7,11 @@ using System.Web;
 
 namespace dBook.Models
 {
-    [Table("User")]
-    public class User
+    [Table("Category")]
+    public class Category
     {
         [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int USER_ID { get; set; }
-        public string USERNAME { get; set; }
+        public int CATEGORY_ID { get; set; }
         public string NAME { get; set; }
-        public string LAST_NAME { get; set; }
-        public DateTime REGISTER_DATE { get; set; }
-        public string ROLE { get; set; }
     }
 }
