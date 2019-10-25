@@ -6,8 +6,12 @@ using System.Web;
 
 namespace dBook.Models
 {
-    public class DatabaseContext:DbContext
+    public class dBookContext:DbContext
     {
+        public dBookContext() : base("dBookcontext")
+        {
+
+        }
         public DbSet<Books> Books { get; set; }
         public DbSet<Authors> Authors { get; set; }
         public DbSet<User> Users { get; set; }

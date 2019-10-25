@@ -154,7 +154,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,7 +167,7 @@
     <Compile Include="Models\BookComments.cs" />
     <Compile Include="Models\Books.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\DatabaseContext.cs" />
+    <Compile Include="Models\dBookContext.cs" />
     <Compile Include="Models\FavoriteAuthors.cs" />
     <Compile Include="Models\ReadBooksList.cs" />
     <Compile Include="Models\User.cs" />
@@ -178,6 +182,21 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\UserPage.cshtml" />
+    <Content Include="Views\User\MyPage.cshtml" />
+    <Content Include="Views\Home\HomePage.cshtml" />
+    <Content Include="Views\Book\BookList.cshtml" />
+    <Content Include="Views\Book\TheBook.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\BooksControl.cshtml" />
+    <Content Include="Views\Admin\AuthorsControl.cshtml" />
+    <Content Include="Views\Admin\UsersControl.cshtml" />
+    <Content Include="Views\Admin\CommentsControl.cshtml" />
+    <Content Include="Views\Author\AuthorsList.cshtml" />
+    <Content Include="Views\Author\TheAuthor.cshtml" />
+    <Content Include="Views\User\UserSettings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

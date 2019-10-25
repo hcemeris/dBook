@@ -6,17 +6,16 @@ using System.Web.Mvc;
 
 namespace dBook.Controllers
 {
-    public class HomeController : Controller
+    public class BookController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+        // GET: Book
+        public ActionResult BooksList()
         {
             return View();
         }
-        public ActionResult HomePage()
+        public ActionResult TheBook()
         {
             return View();
         }
-        
     }
 }
