@@ -15,6 +15,8 @@ namespace dBook.Models
         public string USERNAME { get; set; }
         public string NAME { get; set; }
         public string LAST_NAME { get; set; }
+        public string PASSWORD { get; set; }
+        public string USER_PHOTO { get; set; }
         public DateTime REGISTER_DATE { get; set; }
         public string ROLE { get; set; }
     }
