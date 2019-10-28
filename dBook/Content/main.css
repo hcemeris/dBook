@@ -1,0 +1,36 @@
+﻿.top{
+    position:fixed;
+    top:0px;
+
+}
+.ortala{
+    position:relative;
+    margin:auto;
+}
+.arkaboyali{
+    background-color:#908787;
+
+}
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+#tamcerceve {
+    min-height: 100%;
+    position: relative;
+}
+
+#ortaAlan {
+    padding: 10px;
+    padding-bottom: 120px; /* footer yüksekliği */
+}
+
+#altfooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 120px; /* footer yüksekliği */
+    background: #6cf;
+    text-align: center;
+}

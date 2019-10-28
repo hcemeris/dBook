@@ -8,31 +8,40 @@
     <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-reboot.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("dBook", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">dBook</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">Anasayfa <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">Kitaplar</a>
+                    <a class="nav-item nav-link" href="#">Yazarlar</a>
+                    <a class="nav-item nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-        </div>
+        </nav>
     </div>
 
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - dBook</p>
+            
+            <div class="ortala">
+                <p>&copy; @DateTime.Now.Year - dBook Kitap Listeleme Sitesi</p>
+            </div>
+
         </footer>
     </div>
     <script src="~/Scripts/bootstrap.min.js"></script>
