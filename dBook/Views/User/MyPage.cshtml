@@ -1,7 +1,18 @@
-﻿
+﻿@using dBook.Models
+@model IEnumerable<dBook.Models.User>
 @{
     ViewBag.Title = "MyPage";
 }
 
 <h2>MyPage</h2>
 
+<div class="row">
+    <div class="col-6">
+        @foreach(var item in Model)
+        {
+            <p>
+                @item.USERNAME
+            </p>
+        }
+    </div>
+</div>

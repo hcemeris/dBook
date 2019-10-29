@@ -51,13 +51,43 @@ namespace dBook.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Login(string _username,string _password)
+        {
+            try
+            {
+                var user = db.Users.Where(x => x.USERNAME == _username).FirstOrDefault();
+                if (user != null)
+                {
+                    if (user.PASSWORD == _password)
+                    {
+                        return RedirectToAction("MyPage","User",new { id= user.USER_ID });
+                    }
+                    else
+                    {
+                        ViewBag.error = "Şifre yanlış";
+                    }
+                }
+                else
+                {
+                    ViewBag.error = "Kayıt bulunamadı";
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return View();
+        }
         public ActionResult UserPage()
         {
             return View();
         }
-        public ActionResult MyPage()
+        public ActionResult MyPage(int id)
         {
-            return View();
+            var user = db.Users.Where(x => x.USER_ID == id).ToList();
+            return View(user);
         }
         public ActionResult UserSettings()
         {

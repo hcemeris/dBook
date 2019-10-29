@@ -5,3 +5,15 @@
 
 <h2>Login</h2>
 
+<div class="row">
+    <div class="col-12">
+        <form method="post">
+            <label for="_username">USERNAME</label>
+            <input type="text" name="_username" id="_username"/>
+            <label for="_password">PASSWORD</label>
+            <input type="text" name="_password" id="_password"/>
+            <input type="submit" value="Giriş"/>
+        </form>
+        @ViewBag.error
+    </div>
+</div>
