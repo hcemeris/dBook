@@ -3,16 +3,30 @@
     top:0px;
 
 }
-.ortala{
-    position:relative;
-    margin:auto;
+.ortala {
+    position: relative;
+    margin: auto !important;
+    margin-top: 130px !important;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 25px;
+   /* background-color: rgba(192, 184, 184, 0.2);
+    color: rgb(255, 255, 255) !important;*/
 }
+a {
+    color: black;
+}
+
+.sagaGetir {
+    float: right;
+}
+
 .arkaboyali{
     background-color:#908787;
 
 }
 html, body {
-    margin: 0;
+    
     height: 100%;
 }
 
