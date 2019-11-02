@@ -1,4 +1,11 @@
-﻿
+﻿/*.arkaplan {
+    background-image: url(/Content/img/grey-backround.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}*/
+
 .ortala {
     position: relative;
     margin: auto !important;
@@ -6,8 +13,8 @@
     border: 1px solid white;
     border-radius: 4px;
     padding: 25px;
-   /* background-color: rgba(192, 184, 184, 0.2);
-    color: rgb(255, 255, 255) !important;*/
+    background-color: rgba(192, 184, 184, 0.2);
+    color: rgb(255, 255, 255) !important;
 }
 a {
     color: black;
