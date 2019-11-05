@@ -9,17 +9,17 @@
                 <div class="row  ">
                     <div class="col-md-4 ortala">
 
-                        <form>
+                        <form method="post" action="../User/Login">
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-4 col-form-label">Kullanıcı Adı</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputPassword" placeholder="Kullanıcı Adı">
+                                    <input type="text" class="form-control" id="_username" name="_username" placeholder="Kullanıcı Adı">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-4 col-form-label">Şifre</label>
                                 <div class="col-sm-8">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="Şifre">
+                                    <input type="password" class="form-control" id="_password" name="_password" placeholder="Şifre">
                                 </div>
                             </div>
                             <div class="custom-control custom-checkbox sagaGetir">
@@ -29,7 +29,7 @@
                             <br />
                             <div>
                                 <button type="submit" class="btn btn-dark">Giriş Yap</button>
-                                <button type="submit" class="btn btn-dark">Üye Ol</button>
+                                @Html.ActionLink("Üye Ol","Register","User",null,new { @class = "btn btn-dark"})
                             </div>
                             <br />
                             <div>

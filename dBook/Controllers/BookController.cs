@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using dBook.Models;
+using System.Data.Entity;
 namespace dBook.Controllers
 {
     public class BookController : Controller
     {
-        // GET: Book
+        dBookContext db = new dBookContext();
         public ActionResult BooksList()
         {
-            return View();
+            var books = db.Books.Include(x=>x.AUTHOR).Include(k=>k.CATEGORY).ToList();
+            return View(books);
         }
         public ActionResult TheBook()
         {

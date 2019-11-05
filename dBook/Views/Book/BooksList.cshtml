@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "BooksList";
+}
+
+@using dBook.Models
+@model IEnumerable<dBook.Models.Books>
+@{
+    ViewBag.Title = "BookList";
+}
+
+
+@if (Model != null)
+{
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">KİTAP ADI</th>
+                    <th scope="col">AÇIKLAMA</th>
+                    <th scope="col">YAZAR</th>
+                    <th scope="col">KATEGORİ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.BOOK_ID</th>
+                        <td>@item.BOOK_NAME</td>
+                        <td>@item.BOOK_DESCRIPTION</td>
+                        <td>@(item.AUTHOR.AUTHOR_NAME + "  " + item.AUTHOR.AUTHOR_LASTNAME)</td>
+                        <td>@item.CATEGORY.NAME</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h1>Kitap yok</h1>
+}
