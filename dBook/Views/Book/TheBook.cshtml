@@ -1,7 +1,21 @@
-﻿
+﻿@using dBook.Models;
+@model dBook.Models.Books
 @{
     ViewBag.Title = "TheBook";
 }
 
-<h2>TheBook</h2>
+@if (Model != null)
+{
+    <div class="row">
+        <p>
+            @Model.BOOK_NAME
+        </p>
+    </div>
 
+}
+else
+{
+    <p>
+        Bir sorun var kitap bulunamadı.
+    </p>
+}

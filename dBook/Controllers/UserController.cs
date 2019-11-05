@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using dBook.Models;
 namespace dBook.Controllers
 {
@@ -61,6 +62,7 @@ namespace dBook.Controllers
                 {
                     if (user.PASSWORD == _password)
                     {
+                        FormsAuthentication.SetAuthCookie(_username, false);
                         return RedirectToAction("MyPage","User",new { id= user.USER_ID });
                     }
                     else

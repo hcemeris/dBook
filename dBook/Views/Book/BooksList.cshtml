@@ -1,8 +1,4 @@
 ﻿
-@{
-    ViewBag.Title = "BooksList";
-}
-
 @using dBook.Models
 @model IEnumerable<dBook.Models.Books>
 @{
@@ -28,7 +24,7 @@
                 {
                     <tr>
                         <th scope="row">@item.BOOK_ID</th>
-                        <td>@item.BOOK_NAME</td>
+                        <td>@Html.ActionLink(item.BOOK_NAME,"TheBook","Book",new { id=item.BOOK_ID},null)</td>
                         <td>@item.BOOK_DESCRIPTION</td>
                         <td>@(item.AUTHOR.AUTHOR_NAME + "  " + item.AUTHOR.AUTHOR_LASTNAME)</td>
                         <td>@item.CATEGORY.NAME</td>
