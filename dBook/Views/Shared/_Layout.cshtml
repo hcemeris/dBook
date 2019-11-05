@@ -15,41 +15,64 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
 </head>
-<body >
-    <div class="fixed-top" >
-        <nav class="nav navbar navbar-expand-lg navbar-dark bg-dark">
-            
-                 <a class="navbar-brand" href="#">dBook</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-            
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
+<body class="arkaplan">
+    <div class="fixed-top">
+
+
+        <nav class="nav navbar navbar-expand-lg navbar-dark bg-dark ">
+
+            <a class="navbar-brand" href="#">dBook</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="navbar-nav ">
+                    <li class="nav-item">
                         <a class="nav-item nav-link" style="color:#faf6f6" href="#">Anasayfa <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-item nav-link" style="color:#faf6f6" href="#">Kitaplar</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-item nav-link" style="color:#faf6f6" href="#">Yazarlar</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-item nav-link" style="color:#faf6f6" href="#">Kategoriler</a>
-                    </div>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-            
-           
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-item" href="#üyeol" style="color:#faf6f6">Üye Ol</a>
                     </li>
-                    &nbsp;&nbsp;
-                    <li class="nav-item">
-                        <a class="nav-item" href="#girisyap" style="color:#faf6f6">Giriş Yap</a>
-                    </li>
+
+
+
                 </ul>
-            
-            
-        </nav>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <a href="# "class="btn btn-light my-2 my-sm-0" type="submit">Search</a>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+                </form>
+
+            </div>
+
+
+
+
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <ul class="ml-auto">
+                    <li class="nav navbar-right">
+                        <a class="nav-item" href="#girisyap" style="color:#faf6f6">Giriş Yap</a>&nbsp;&nbsp;
+                    </li>
+                    <li class="nav navbar-right">
+                        <a class="nav-item" href="#üyeol" style="color:#faf6f6">Üye Ol</a>&nbsp;&nbsp;
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+</nav>
     </div>
 
     <div class="body-content">
@@ -58,7 +81,7 @@
         <footer>
             
             <div class="ortala">
-                <p>&copy; @DateTime.Now.Year - dBook Kitap Listeleme Sitesi</p>
+                <p>&copy; Copyright @DateTime.Now.Year - dBook Kitap Listeleme Sitesi</p>
             </div>
 
         </footer>
