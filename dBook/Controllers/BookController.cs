@@ -15,9 +15,11 @@ namespace dBook.Controllers
             var books = db.Books.Include(x=>x.AUTHOR).Include(k=>k.CATEGORY).ToList();
             return View(books);
         }
-        public ActionResult TheBook()
+        public ActionResult TheBook(int id)
         {
-            return View();
+            var theBook = db.Books.Find(id);
+
+            return View(theBook);
         }
     }
 }

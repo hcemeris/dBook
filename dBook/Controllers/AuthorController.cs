@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using dBook.Models;
 namespace dBook.Controllers
 {
     public class AuthorController : Controller
     {
-        // GET: Author
+        dBookContext db = new dBookContext();
         public ActionResult AuthorsList()
         {
-            return View();
+            var authors = db.Authors.ToList();
+            return View(authors);
         }
-        public ActionResult TheAuthor()
+        public ActionResult TheAuthor(int id)
         {
-            return View();
+            var author = db.Authors.Find(id);
+            return View(author);
         }
 
     }

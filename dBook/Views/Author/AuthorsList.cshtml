@@ -1,7 +1,36 @@
-﻿
+﻿@using dBook.Models
+@model IEnumerable<dBook.Models.Authors>
 @{
     ViewBag.Title = "AuthorsList";
 }
 
-<h2>AuthorsList</h2>
+@if (Model != null)
+{
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">YAZAR ID</th>
+                    <th scope="col">YAZAR ADI</th>
+                    <th scope="col">YAZAR AÇIKLAMA</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.AUTHOR_ID</th>
+                        <td>@Html.ActionLink(item.AUTHOR_NAME + " " + item.AUTHOR_LASTNAME, "TheAuthor", "Author", new { id = item.AUTHOR_ID }, null)</td>
+                        <td>@item.AUTHOR_DESCRIPTION</td>
+                    </tr>
+                }
 
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h1>Yazar yok</h1>
+}

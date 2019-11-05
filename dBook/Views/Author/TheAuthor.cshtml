@@ -1,7 +1,20 @@
-﻿
+﻿@using dBook.Models
+@model dBook.Models.Authors
 @{
     ViewBag.Title = "TheAuthor";
 }
 
 <h2>TheAuthor</h2>
 
+@if (Model != null)
+{
+    <div class="row">
+        @Model.AUTHOR_NAME
+    </div>
+}
+else
+{
+    <p>
+        Bir sorun var yazar bulunamadı.
+    </p>
+}
