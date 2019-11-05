@@ -14,6 +14,7 @@ namespace dBook.Models
         public int BOOK_ID { get; set; }
         public string BOOK_NAME { get; set; }
         public string BOOK_DESCRIPTION { get; set; }
+        public string BOOK_PHOTO { get; set; }
         public Authors AUTHOR { get; set; }
         public Category CATEGORY { get; set; }
     }
