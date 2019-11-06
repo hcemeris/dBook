@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace dBook.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
