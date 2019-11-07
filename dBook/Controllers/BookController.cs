@@ -12,13 +12,13 @@ namespace dBook.Controllers
         dBookContext db = new dBookContext();
         public ActionResult BooksList()
         {
-            var books = db.Books.Include(x => x.AUTHOR).Include(k => k.CATEGORY).ToList();
+            var books = db.Books.Include(x=>x.AUTHOR).Include(k=>k.CATEGORY).ToList();
             return View(books);
-
         }
         public ActionResult TheBook(int id)
         {
-            var theBook = db.Books.Include(a=>a.AUTHOR).Include(c=>c.CATEGORY).Where(x=>x.BOOK_ID == id).FirstOrDefault();
+            var theBook = db.Books.Find(id);
+
             return View(theBook);
         }
     }
