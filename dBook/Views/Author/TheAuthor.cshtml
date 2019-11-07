@@ -4,7 +4,6 @@
     ViewBag.Title = "TheAuthor";
 }
 
-<h2>TheAuthor</h2>
 
 @if (Model != null)
 {
@@ -16,5 +15,15 @@ else
 {
     <p>
         Bir sorun var yazar bulunamadı.
+    </p>
+}
+<h2>Kitapları</h2>
+@if(ViewBag.books != null)
+{
+    <p>
+        @foreach(var book in ViewBag.books)
+        {
+            <h3>@book.BOOK_NAME</h3>
+        }
     </p>
 }
