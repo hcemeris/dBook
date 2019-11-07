@@ -11,16 +11,14 @@ namespace dBook.Controllers
     public class UserController : Controller
     {
         dBookContext db = new dBookContext();
-        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
-        [AllowAnonymous]
         [HttpPost]
-        public ActionResult Register(string _username, string _password, string _name, string _lastname, HttpPostedFileBase _userphoto)
+        public ActionResult Register(string _username, string _password, string _name, string _lastname, System.Web.HttpPostedFileBase _userphoto)
         {
-            if (db.Users.Where(x => x.USERNAME == _username).Count() <= 0)
+            if(db.Users.Where(x=>x.USERNAME == _username).Count() <= 0)
             {
                 try
                 {
@@ -50,14 +48,12 @@ namespace dBook.Controllers
 
             return View();
         }
-        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
-        [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login(string _username, string _password)
+        public ActionResult Login(string _username,string _password)
         {
             try
             {
@@ -67,8 +63,7 @@ namespace dBook.Controllers
                     if (user.PASSWORD == _password)
                     {
                         FormsAuthentication.SetAuthCookie(_username, false);
-                        Session["id"] = user.USER_ID;
-                        return RedirectToAction("MyPage", "User", new { id = user.USER_ID });
+                        return RedirectToAction("MyPage","User",new { id= user.USER_ID });
                     }
                     else
                     {
@@ -91,7 +86,6 @@ namespace dBook.Controllers
         {
             return View();
         }
-        [Authorize]
         public ActionResult MyPage(int id)
         {
             var user = db.Users.Where(x => x.USER_ID == id).ToList();
