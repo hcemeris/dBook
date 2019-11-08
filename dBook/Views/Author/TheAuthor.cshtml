@@ -1,20 +1,16 @@
-﻿@using dBook.Models
-@model dBook.Models.Authors
+﻿@using dBook.ViewModels
+@model dBook.ViewModels.AuthorViewModel
 @{
     ViewBag.Title = "TheAuthor";
 }
 
-<h2>TheAuthor</h2>
 
-@if (Model != null)
-{
-    <div class="row">
-        @Model.AUTHOR_NAME
+<div class="row">
+    <div class="col-12">
+        <h1>Yazar adı : @Model.Author.AUTHOR_NAME</h1>
+        @foreach(var book in Model.Books)
+        {
+            <h3>Kitabı : @book.BOOK_NAME</h3>
+        }
     </div>
-}
-else
-{
-    <p>
-        Bir sorun var yazar bulunamadı.
-    </p>
-}
+</div>

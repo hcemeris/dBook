@@ -1,0 +1,16 @@
+﻿@using dBook.ViewModels
+@model dBook.ViewModels.CategoryBooks
+@{
+    ViewBag.Title = "CategoryResult";
+}
+
+<div class="row">
+    <h1>Kategori : @Model.Category.NAME</h1>
+    <div class="col-12">
+        <p>Kitaplar :</p>
+        @foreach (var item in Model.Books)
+        {
+            <b>@item.BOOK_NAME</b>
+        }
+    </div>
+</div>
