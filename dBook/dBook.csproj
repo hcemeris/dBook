@@ -197,7 +197,6 @@
     <Content Include="Views\Home\HomePage.cshtml" />
     <Content Include="Views\Book\TheBook.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\BooksControl.cshtml" />
     <Content Include="Views\Admin\AuthorsControl.cshtml" />
     <Content Include="Views\Admin\UsersControl.cshtml" />
     <Content Include="Views\Admin\CommentsControl.cshtml" />
@@ -215,6 +214,9 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Book\BooksList.cshtml" />
     <Content Include="Views\Home\CategoryResult.cshtml" />
+    <Content Include="Views\Admin\BooksControl.cshtml" />
+    <Content Include="Views\Admin\CreateBook.cshtml" />
+    <Content Include="Views\Admin\EditBook.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -224,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\BookPhoto\" />
     <Folder Include="img\UserPhoto\" />
   </ItemGroup>
   <ItemGroup>

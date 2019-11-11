@@ -1,7 +1,44 @@
-﻿
+﻿@model IEnumerable<dBook.Models.Books>
+
 @{
     ViewBag.Title = "BooksControl";
 }
 
 <h2>BooksControl</h2>
 
+<p>
+    @Html.ActionLink("Create New", "CreateBook")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BOOK_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BOOK_DESCRIPTION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BOOK_PHOTO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BOOK_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BOOK_DESCRIPTION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BOOK_PHOTO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditBook", new { id=item.BOOK_ID }) |
+            @Html.ActionLink("Delete", "DeleteBook", new { id=item.BOOK_ID })
+        </td>
+    </tr>
+}
+
+</table>
