@@ -5,10 +5,10 @@ using System.Web;
 using dBook.Models;
 namespace dBook.ViewModels
 {
-    public class AuthorViewModel
+    public class BookViewModel
     {
+        public Books Book { get; set; }
+        public List<BookComments> Comments { get; set; }
         public Authors Author { get; set; }
-        public List<Books> Books { get; set; }
-        public List<AuthorComments> AuthorComments { get; set; }
     }
 }

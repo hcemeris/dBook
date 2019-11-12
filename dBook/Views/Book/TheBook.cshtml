@@ -1,70 +1,158 @@
-﻿@using dBook.Models;
-@model dBook.Models.Books
+﻿@using dBook.ViewModels;
+@model dBook.ViewModels.BookViewModel
 @{
     ViewBag.Title = "TheBook";
 }
 
-@if (Model != null)
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-12 ortala">
-                <div style="float: left;"> <button type="button" class="btn btn-dark">Okuduklarıma Ekle</button></div>
-                <div style="float: left;"> <button type="button" class="btn btn-dark">Okuyacaklarıma Ekle</button></div>
-            </div>
-            <div class=" col-12 ">
-
-
-                <div class="col-2 card ortala " style="width: 100%; float: left; ">
-                    <img src="kitap.jpg" class="card-img-top" alt="Veri Yapıları">
-                    <div class="baslik">
-                        <p>Veri Yapıları</p>
-                    </div>
-                    <div class=" baslik">
-                        <a>Puanı : 9/10</a>
-                    </div>
-                    <div class="bilgi">
-
-                    </div>
+@*@if (Model != null)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-12 ortala">
+                    <div style="float: left;"> <button type="button" class="btn btn-dark">Okuduklarıma Ekle</button></div>
+                    <div style="float: left;"> <button type="button" class="btn btn-dark">Okuyacaklarıma Ekle</button></div>
                 </div>
+                <div class=" col-12 ">
 
-                <div class="col-10 " ; style="width: 100%; float: left;">
 
-                    <div class="col-6 ortala" ; style="width: 100%; float: left;">
-                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
-                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
-                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
-                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
-                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+                    <div class="col-2 card ortala " style="width: 100%; float: left; ">
+                        <img src="kitap.jpg" class="card-img-top" alt="Veri Yapıları">
+                        <div class="baslik">
+                            <p>Veri Yapıları</p>
+                        </div>
+                        <div class=" baslik">
+                            <a>Puanı : 9/10</a>
+                        </div>
+                        <div class="bilgi">
 
+                        </div>
                     </div>
-                    <div class="col-4 ortala" style="width: 100%; float: left;">
-                        <p>Kitapla ilgili bilgiler</p>
-                        <p>Kitapla ilgili bilgiler</p>
-                        <p>Kitapla ilgili bilgiler</p>
-                        <p>Kitapla ilgili bilgiler</p>
-                        <p>Kitapla ilgili bilgiler</p>
 
+                    <div class="col-10 " ; style="width: 100%; float: left;">
+
+                        <div class="col-6 ortala" ; style="width: 100%; float: left;">
+                            <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+                            <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+                            <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+                            <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+                            <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+
+                        </div>
+                        <div class="col-4 ortala" style="width: 100%; float: left;">
+                            <p>Kitapla ilgili bilgiler</p>
+                            <p>Kitapla ilgili bilgiler</p>
+                            <p>Kitapla ilgili bilgiler</p>
+                            <p>Kitapla ilgili bilgiler</p>
+                            <p>Kitapla ilgili bilgiler</p>
+
+                        </div>
                     </div>
+
                 </div>
-
             </div>
+
         </div>
 
+        <div class="row">
+            <p>
+                @Model.BOOK_NAME
+            </p>
+        </div>
+
+
+    }
+    else
+    {
+
+        <p>
+            Bir sorun var kitap bulunamadı.
+        </p>
+    }*@
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-3 bg-secondary text-white" style="width:100%;height:auto;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="~/img/BookPhoto/@Model.Book.BOOK_PHOTO" class="card-img" alt="@Model.Book.BOOK_NAME Fotoğrafı">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@(Model.Book.BOOK_NAME)</h5>
+                            <p class="card-text">@Model.Book.BOOK_DESCRIPTION</p>
+                            <p class="card-text"><small class="text-white">Yazar :@(Model.Author.AUTHOR_NAME + " " + Model.Author.AUTHOR_LASTNAME)</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
-        <p>
-            @Model.BOOK_NAME
-        </p>
-    </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="font-weight-bold">Yorum Yap</h3>
 
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <form class="form-group ml-5" method="post" action="~/Book/CommentBook/@Model.Book.BOOK_ID">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect2">Puanınız</label>
 
-}
-else
-{
-    
-    <p>
-        Bir sorun var kitap bulunamadı.
-    </p>
+                                <select class="form-control" name="_point" id="exampleFormControlSelect2">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Yorumunuz</label>
+                                <textarea class="form-control" name="_comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+            <div class="col-6 float-right">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="font-weight-bold text-center">YORUMLAR</h3>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="card mt-3" style="width: 72rem;">
+                                <div class="card-body">
+                                    <p class="card-text">Yorum : @comment.COMMENT</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="float-left">
+                                        Puan : @comment.POINT
+
+                                    </div>
+                                    <div class="float-right">
+                                        <p class="card-text">Ad-Soyad : @(comment.USER.NAME + " " + comment.USER.LAST_NAME)</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
 }

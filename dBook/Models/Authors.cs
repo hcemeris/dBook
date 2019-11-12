@@ -15,6 +15,7 @@ namespace dBook.Models
         public string AUTHOR_NAME { get; set; }
         public string AUTHOR_LASTNAME { get; set; }
         public string AUTHOR_DESCRIPTION { get; set; }
+        public string AUTHOR_PHOTO { get; set; }
 
     }
 }

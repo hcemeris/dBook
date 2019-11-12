@@ -37,8 +37,9 @@ namespace dBook.Controllers
             book.AUTHOR = author;
             if (file != null && file.ContentLength > 0)
             {
-                var path = Path.Combine(Server.MapPath("~/img/BookPhoto"), file.FileName);
-                file.SaveAs(path);
+                string path = Path.GetFileName(file.FileName);
+                var upload_path = Path.Combine(Server.MapPath("~/img/BookPhoto/"), path);
+                file.SaveAs(upload_path);
                 book.BOOK_PHOTO = path;
             }
             db.Books.Add(book);
@@ -52,7 +53,7 @@ namespace dBook.Controllers
             return View(book);
         }
         [HttpPost]
-        public ActionResult EditBook([Bind(Include ="BOOK_ID,BOOK_NAME,BOOK_DESCRIPTION,BOOK_PHOTO")]Books book)
+        public ActionResult EditBook([Bind(Include ="BOOK_ID,BOOK_NAME,BOOK_DESCRIPTION")]Books book)
         {
             if (ModelState.IsValid)
             {
@@ -83,8 +84,15 @@ namespace dBook.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateAuthor(Authors author)
+        public ActionResult CreateAuthor(Authors author, HttpPostedFileBase file)
         {
+            if (file != null && file.ContentLength > 0)
+            {
+                string path = Path.GetFileName(file.FileName);
+                var upload_path = Path.Combine(Server.MapPath("~/img/AuthorPhoto/"), path);
+                file.SaveAs(upload_path);
+                author.AUTHOR_PHOTO = path;
+            }
             db.Authors.Add(author);
             db.SaveChanges();
             return View();
@@ -95,10 +103,17 @@ namespace dBook.Controllers
             return View(author);
         }
         [HttpPost]
-        public ActionResult EditAuthor([Bind(Include = "AUTHOR_ID,AUTHOR_NAME,AUTHOR_LASTNAME,AUTHOR_DESCRIPTION")]Authors author)
+        public ActionResult EditAuthor([Bind(Include = "AUTHOR_ID,AUTHOR_NAME,AUTHOR_LASTNAME,AUTHOR_DESCRIPTION")]Authors author, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null && file.ContentLength > 0)
+                {
+                    string path = Path.GetFileName(file.FileName);
+                    var upload_path = Path.Combine(Server.MapPath("~/img/AuthorPhoto/"), path);
+                    file.SaveAs(upload_path);
+                    author.AUTHOR_PHOTO = path;
+                }
                 db.Entry(author).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

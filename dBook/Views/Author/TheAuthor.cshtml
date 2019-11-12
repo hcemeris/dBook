@@ -4,12 +4,9 @@
     ViewBag.Title = "TheAuthor";
 }
 
-    <div class="container">
+@*<div class="container">
         <div class="row">
-            
             <div class=" col-12 ">
-
-
                 <div class="col-2 card ortala " style="width: 100%; float: left; ">
                     <img src="kitap.jpg" class="card-img-top" alt="Sabahattin Ali">
                     <div class="baslik">
@@ -46,14 +43,101 @@
             </div>
         </div>
 
+    </div>*@
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-3 bg-secondary text-white" style="width:100%;height:auto;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="~/img/AuthorPhoto/@Model.Author.AUTHOR_PHOTO" class="card-img" alt="@(Model.Author.AUTHOR_NAME+" "+Model.Author.AUTHOR_LASTNAME) Fotoğrafı">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@(Model.Author.AUTHOR_NAME + " " + Model.Author.AUTHOR_LASTNAME)</h5>
+                            <p class="card-text">@Model.Author.AUTHOR_DESCRIPTION</p>
+                            <p class="card-text"><small class="text-white">Kitap sayısı :@Model.Books.Count</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-<div class="row">
-    <div class="col-12">
-        <h1>Yazar adı : @Model.Author.AUTHOR_NAME</h1>
-        @foreach(var book in Model.Books)
-        {
-            <h3>Kitabı : @book.BOOK_NAME</h3>
-        }
+    <div class="row">
+        <div class="col-6">
+            <h3 class="font-weight-bold text-center">KİTAPLARI</h3>
+            <ul class="list-group">
+                @foreach (var book in Model.Books)
+                {
+                    <li class="list-group-item list-group-item-secondary">@book.BOOK_NAME</li>
+                }
+            </ul>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="font-weight-bold text-center">Yorum Yap</h3>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form class="form-group ml-5" method="post" action="~/Author/CommentAuthor/@Model.Author.AUTHOR_ID">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect2">Puanınız</label>
+
+                            <select class="form-control" name="_point" id="exampleFormControlSelect2">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Yorumunuz</label>
+                            <textarea class="form-control" name="_comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="font-weight-bold text-center">YORUMLAR</h3>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    @foreach (var comment in Model.AuthorComments)
+                    {
+                        <div class="card mt-3" style="width: 72rem;">
+                            <div class="card-body">
+                                <p class="card-text">Yorum : @comment.COMMENT</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="float-left">
+                                    Puan : @comment.POINT
+
+                                </div>
+                                <div class="float-right">
+                                    <p class="card-text">Ad-Soyad : @(comment.USER.NAME + " " + comment.USER.LAST_NAME)</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+        </div>
     </div>
-</div>
+
+}
