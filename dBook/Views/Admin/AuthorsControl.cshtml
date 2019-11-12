@@ -1,7 +1,44 @@
-﻿
+﻿@model IEnumerable<dBook.Models.Authors>
+
 @{
     ViewBag.Title = "AuthorsControl";
 }
 
 <h2>AuthorsControl</h2>
 
+<p>
+    @Html.ActionLink("Create New", "CreateAuthor")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AUTHOR_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AUTHOR_LASTNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AUTHOR_DESCRIPTION)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AUTHOR_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AUTHOR_LASTNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AUTHOR_DESCRIPTION)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditAuthor", new { id=item.AUTHOR_ID }) |
+            @Html.ActionLink("Delete", "DeleteAuthor", new { id=item.AUTHOR_ID })
+        </td>
+    </tr>
+}
+
+</table>
