@@ -8,31 +8,51 @@
 {
     <div class="container">
         <div class="row">
-            <div class=" col-12">
+            <div class="col-12 ortala">
+                <div style="float: left;"> <button type="button" class="btn btn-dark">Okuduklarıma Ekle</button></div>
+                <div style="float: left;"> <button type="button" class="btn btn-dark">Okuyacaklarıma Ekle</button></div>
+            </div>
+            <div class=" col-12 ">
 
-                <div class="col-2 card  " style="width: 100%; float: left; ">
-                    <img src="~/Content/img/kitap.jpg" class="card-img-top" alt="Veri Yapıları">
+
+                <div class="col-2 card ortala " style="width: 100%; float: left; ">
+                    <img src="kitap.jpg" class="card-img-top" alt="Veri Yapıları">
                     <div class="baslik">
                         <p>Veri Yapıları</p>
                     </div>
                     <div class=" baslik">
                         <a>Puanı : 9/10</a>
                     </div>
+                    <div class="bilgi">
+
+                    </div>
                 </div>
 
+                <div class="col-10 " ; style="width: 100%; float: left;">
 
-                <div class="col-6">
-                    <p>Yorummlar</p>
+                    <div class="col-6 ortala" ; style="width: 100%; float: left;">
+                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
+                        <p> Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar Yorummlar  </p>
 
+                    </div>
+                    <div class="col-4 ortala" style="width: 100%; float: left;">
+                        <p>Kitapla ilgili bilgiler</p>
+                        <p>Kitapla ilgili bilgiler</p>
+                        <p>Kitapla ilgili bilgiler</p>
+                        <p>Kitapla ilgili bilgiler</p>
+                        <p>Kitapla ilgili bilgiler</p>
+
+                    </div>
                 </div>
-                <div class="col-4">
-                    <p>Kitapla ilgili bilgiler</p>
 
-                </div>
             </div>
         </div>
 
     </div>
+
     <div class="row">
         <p>
             @Model.BOOK_NAME

@@ -19,6 +19,17 @@ a {
     list-style: none outside none;
     
 }
+.bilgi {
+    padding: 0 10px 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    line-height: 1.3125rem;
+    color: rgb(0, 0, 0);
+    margin-bottom: 3px;
+}
+
 
     .menu li {
         position: relative;
