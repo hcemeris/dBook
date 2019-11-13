@@ -32,7 +32,7 @@ namespace dBook.Controllers
                         string photo_path = Path.GetFileName(_userphoto.FileName);
                         var upload_path = Path.Combine(Server.MapPath("~/img/UserPhoto/"), photo_path);
                         _userphoto.SaveAs(upload_path);
-                        new_user.USER_PHOTO = upload_path;
+                        new_user.USER_PHOTO = photo_path;
                     }
                     new_user.ROLE = "User";
                     new_user.REGISTER_DATE = DateTime.Now;
@@ -88,7 +88,7 @@ namespace dBook.Controllers
         }
         public ActionResult MyPage(int id)
         {
-            var user = db.Users.Where(x => x.USER_ID == id).ToList();
+            var user = db.Users.Find(id);
             return View(user);
         }
         public ActionResult UserSettings()

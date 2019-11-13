@@ -1,18 +1,74 @@
-﻿@using dBook.Models
-@model IEnumerable<dBook.Models.User>
+﻿@model dBook.Models.User
+
 @{
     ViewBag.Title = "MyPage";
 }
 
 <h2>MyPage</h2>
 
-<div class="row">
-    <div class="col-6">
-        @foreach(var item in Model)
-        {
-            <p>
-                @item.USERNAME
-            </p>
-        }
-    </div>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.USERNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USERNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LAST_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LAST_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PASSWORD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PASSWORD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USER_PHOTO)
+        </dt>
+
+        <dd>
+            <img src="~/img/UserPhoto/@Model.USER_PHOTO"/>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REGISTER_DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REGISTER_DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROLE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROLE)
+        </dd>
+
+    </dl>
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.USER_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

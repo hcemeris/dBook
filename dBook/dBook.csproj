@@ -194,7 +194,6 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\UserPage.cshtml" />
-    <Content Include="Views\User\MyPage.cshtml" />
     <Content Include="Views\Home\HomePage.cshtml" />
     <Content Include="Views\Book\TheBook.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -220,6 +219,7 @@
     <Content Include="Views\Admin\AuthorsControl.cshtml" />
     <Content Include="Views\Admin\CreateAuthor.cshtml" />
     <Content Include="Views\Admin\EditAuthor.cshtml" />
+    <Content Include="Views\User\MyPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
