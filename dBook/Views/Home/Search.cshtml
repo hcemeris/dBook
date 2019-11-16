@@ -1,0 +1,74 @@
+﻿@using dBook.ViewModels
+@model dBook.ViewModels.SearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h4>Kullanıcılar</h4>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Kullanıcı Adı</th>
+                    <th scope="col">Ad Soyad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td>@user.USERNAME</td>
+                        <th scope="row">@(user.NAME + " " + user.LAST_NAME)</th>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h4>Yazarlar</h4>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Ad Soyad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var author in Model.Authors)
+                {
+                    <tr>
+                        <td>@(author.AUTHOR_NAME + " " + author.AUTHOR_LASTNAME)</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h4>Kitaplar</h4>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Kitap</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model.Books)
+                {
+                    <tr>
+                        <td>@book.BOOK_NAME</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

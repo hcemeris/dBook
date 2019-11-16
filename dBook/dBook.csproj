@@ -182,6 +182,7 @@
     <Compile Include="ViewModels\AuthorViewModel.cs" />
     <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="ViewModels\CategoryBooks.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -220,6 +221,7 @@
     <Content Include="Views\Admin\CreateAuthor.cshtml" />
     <Content Include="Views\Admin\EditAuthor.cshtml" />
     <Content Include="Views\User\MyPage.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

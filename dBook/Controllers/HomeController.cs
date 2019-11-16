@@ -38,6 +38,16 @@ namespace dBook.Controllers
 
 
         }
+        [HttpPost]
+        public ActionResult Search(string _search)
+        {
+            SearchViewModel search_model = new SearchViewModel();
+            search_model.Authors = db.Authors.Where(x => x.AUTHOR_NAME.Contains(_search) || x.AUTHOR_LASTNAME.Contains(_search)).ToList();
+            search_model.Books = db.Books.Where(x => x.BOOK_NAME.Contains(_search)).ToList();
+            search_model.Users = db.Users.Where(x => x.USERNAME.Contains(_search) || x.NAME.Contains(_search) || x.LAST_NAME.Contains(_search)).ToList();
+
+            return View(search_model);
+        }
         
     }
 }
