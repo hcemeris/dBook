@@ -38,9 +38,10 @@
                 <div class="col-3 d-flex align-items-stretch">
                     <div class="card mt-1" style="width: 26rem;">
                         <img src="~/img/BookPhoto/@item.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:200px;height:300px;" alt="@item.BOOK_NAME Fotoğrafı">
-                        <div class="card-body">
-                            <h5 class="card-title font-weight-bold text-center"><a href="~/Book/TheBook/@item.BOOK_ID">@item.BOOK_NAME</a></h5>
-                            <p class="card-text">@item.BOOK_DESCRIPTION</p>
+                        <div class="card-body ">
+                            <h5 class="card-title font-weight-bold text-center "><a href="~/Book/TheBook/@item.BOOK_ID">@item.BOOK_NAME</a></h5>
+                            <p class="card-text baslik " >@item.BOOK_DESCRIPTION</p>
+                            
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item font-weight-bold">@(item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME)</li>
