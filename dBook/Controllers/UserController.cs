@@ -63,7 +63,8 @@ namespace dBook.Controllers
                     if (user.PASSWORD == _password)
                     {
                         FormsAuthentication.SetAuthCookie(_username, false);
-                        return RedirectToAction("MyPage","User",new { id= user.USER_ID });
+                        //return RedirectToAction("MyPage","User",new { id= user.USER_ID });
+                        return RedirectToAction("HomePage","Home");
                     }
                     else
                     {
@@ -97,6 +98,7 @@ namespace dBook.Controllers
         }
         public ActionResult Logout()
         {
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
 
         }

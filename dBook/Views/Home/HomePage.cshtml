@@ -1,7 +1,35 @@
-﻿
+﻿@using dBook.Models
+@model IEnumerable<dBook.Models.Books>
 @{
     ViewBag.Title = "HomePage";
 }
 
-<h2>HomePage</h2>
 
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col-12 text-center ">
+            <h3 class="font-weight-bold">Son Eklenen Kitaplar</h3>
+        </div>
+
+    </div>
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title font-weight-bold">@book.BOOK_NAME</h4>
+                        <p class="card-text">@book.BOOK_DESCRIPTION</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+}
+else
+{
+    <p>Giriş Yap gel</p>
+}
