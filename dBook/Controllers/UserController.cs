@@ -11,14 +11,16 @@ namespace dBook.Controllers
     public class UserController : Controller
     {
         dBookContext db = new dBookContext();
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
+        [AllowAnonymous]
         [HttpPost]
-        public ActionResult Register(string _username, string _password, string _name, string _lastname, System.Web.HttpPostedFileBase _userphoto)
+        public ActionResult Register(string _username, string _password, string _name, string _lastname, HttpPostedFileBase _userphoto)
         {
-            if(db.Users.Where(x=>x.USERNAME == _username).Count() <= 0)
+            if(db.Users.Where(x=>x.USERNAME.ToLower().Contains(_username.ToLower())).Count() <= 0)
             {
                 try
                 {
@@ -45,13 +47,14 @@ namespace dBook.Controllers
 
                 }
             }
+            else
+            {
+                ViewBag.username_error = "Bu kullanıcı adı alınmış";
+            }
 
             return View();
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Login(string _username,string _password)
         {
@@ -83,19 +86,44 @@ namespace dBook.Controllers
 
             return View();
         }
-        public ActionResult UserPage()
+        [Authorize]
+        public ActionResult UserPage(int id)
         {
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    var current_username = User.Identity.Name;
+            //    var current_user = db.Users.Where(x => x.USERNAME == current_username).FirstOrDefault();
+            //    var user = db.Users.Find(id);
+
+            //}
             return View();
         }
+        [Authorize]
         public ActionResult MyPage(int id)
         {
-            var user = db.Users.Find(id);
-            return View(user);
+            if (User.Identity.IsAuthenticated)
+            {
+                var current_username = User.Identity.Name;
+                var current_user = db.Users.Where(x => x.USERNAME == current_username).FirstOrDefault();
+
+                if (current_user.USER_ID == id)
+                {
+                    var user = db.Users.Find(id);
+                    return View(user);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+            else return HttpNotFound();
         }
+        [Authorize]
         public ActionResult UserSettings()
         {
             return View();
         }
+        [Authorize]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
