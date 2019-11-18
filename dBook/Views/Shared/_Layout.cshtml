@@ -17,8 +17,7 @@
 <body class="arkaplan">
     @if (User.Identity.IsAuthenticated)
     {
-        <div class="fixed-top">
-            <nav class="nav navbar navbar-expand-lg navbar-dark bg-dark " >
+            <nav class=" navbar navbar-expand-lg navbar-dark bg-dark fixed-top position-fixed" >
 
                 <a class="navbar-brand" href="#">dBook</a>
                 <button class="navbar-toggler btn-lg" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,16 +37,18 @@
                             <a class="nav-link" style="color:#faf6f6" href="~/Author/AuthorsList" role="button">Yazarlar</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-toggle " style="color:#faf6f6" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Kategoriler
-                            </a>
+                        <li class="nav-item ">
+                            <div class="dropdown-d">
+                                <a class="nav-link dropdown-toggle dropbtn " style="color:#faf6f6" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Kategoriler
+                                </a>
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Edebiyat</a>
-                                <a class="dropdown-item" href="#">Roman</a>
-                                <a class="dropdown-item" href="#">deneme</a>
-                                @Html.ActionLink("deneme", "CategoryResult", "Home", new { s = "deneme" }, new { @class = "dropdown-item" })
+                                <div class="dropdown-content dropdown-menu " aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Edebiyat</a>
+                                    <a class="dropdown-item" href="#">Roman</a>
+                                    <a class="dropdown-item" href="#">deneme</a>
+                                    @Html.ActionLink("deneme", "CategoryResult", "Home", new { s = "deneme" }, new { @class = "dropdown-item" })
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -71,12 +72,11 @@
                 </ul>
 
             </nav>
-        </div>
     }
     else
     {
-        <div class="fixed-top">
-            <nav class="nav navbar navbar-expand-lg navbar-dark bg-dark ">
+        
+            <nav class=" navbar navbar-expand-lg navbar-dark bg-dark fixed-top position-fixed " style="border-radius:0;">
 
                 <a class="navbar-brand" href="#">dBook</a>
                 <button class="navbar-toggler btn-lg" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,18 +96,20 @@
                             <a class="nav-link" style="color:#faf6f6" href="~/Author/AuthorsList" role="button">Yazarlar</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-toggle " style="color:#faf6f6" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Kategoriler
-                            </a>
+                        <li class="nav-item dropdown">
+                            <div class="dropdown-d">
+                                <a class="nav-link dropdown-toggle dropbtn " style="color:#faf6f6" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Kategoriler
+                                </a>
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Edebiyat</a>
-                                <a class="dropdown-item" href="#">Roman</a>
-                                <a class="dropdown-item" href="#">deneme</a>
-                                @Html.ActionLink("deneme", "CategoryResult", "Home", new { s = "deneme" }, new { @class = "dropdown-item" })
+                                <div class="dropdown-content dropdown-menu " aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Edebiyat</a>
+                                    <a class="dropdown-item" href="#">Roman</a>
+                                    <a class="dropdown-item" href="#">deneme</a>
+                                </div>
                             </div>
                         </li>
+
                     </ul>
                     <form class="navbar-form navbar-left" role="search" method="post" action="~/Home/Search">
                         <div class="form-group">
@@ -120,7 +122,7 @@
                 </div>
 
             </nav>
-        </div>
+        
     }
 
 

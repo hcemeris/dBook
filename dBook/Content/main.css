@@ -1,5 +1,5 @@
 ﻿.arkaplan {
-    background-color: rgb(238, 238, 238) ;
+    background-color: #f7f7f7;
 }
 
 .ortala {
@@ -9,7 +9,7 @@
     border: 1px solid white;
     border-radius: 10px;
     padding: 25px;
-    background-color: rgba(235, 241, 241, 0.12);
+    background-color: white;
     color: rgba(28, 29, 29, 0.56);
 }
 a {
@@ -107,4 +107,51 @@ html, body {
     height: 120px; /* footer yüksekliği */
     background: #6cf;
     text-align: center;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    color: white;
+    padding: 15px;
+    font-size: 14px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown-d {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: rgba(28, 29, 29, 0.56);
 }
