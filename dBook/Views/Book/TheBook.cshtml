@@ -78,7 +78,7 @@
                         <img src="~/img/BookPhoto/@Model.Book.BOOK_PHOTO" class="card-img img-fluid " style="height:300px; width:100%; border-radius:8px;" alt="@Model.Book.BOOK_NAME Fotoğrafı">
                     </div>
                     <div class="col-9" style="background-color:#f3f3f3; border-radius:8px;">
-                        <div class="card-body" >
+                        <div class="card-body">
                             <h5 class="card-title">@(Model.Book.BOOK_NAME)</h5>
                             <p class="card-text">@Model.Book.BOOK_DESCRIPTION</p>
                             <p class="card-text"><small class="text-black">Yazar :@(Model.Author.AUTHOR_NAME + " " + Model.Author.AUTHOR_LASTNAME)</small></p>
@@ -113,52 +113,69 @@
 
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Yorumunuz</label>
-                                <textarea class="form-control" name="_comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" name="_comment" id="exampleFormControlTextarea1" rows="4" style="resize:none"></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Yorum Yap</button> <br /><br />
                             <div>
-                                @Html.ActionLink("Okuduklarıma Ekle","Add_Readed","User",new {id=Model.Book.BOOK_ID },new { @class="btn btn-primary float-right"})
-                                @Html.ActionLink("Okuyacaklarıma Ekle","Add_Wish","User",new {id=Model.Book.BOOK_ID },new { @class="btn btn-primary float-right"})
+                                @if (!Model.isRead)
+                                {
+                                    @Html.ActionLink("Okuduklarıma Ekle", "Add_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Okuduklarımdan Çıkar", "Drop_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right" })
+                                }
+                                @if (!Model.isWant)
+                                {
+                                    @Html.ActionLink("Okuyacaklarıma Ekle", "Add_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Okuyacaklarımdan Çıkar", "Drop_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right" })
 
+                                }
                             </div>
                         </form>
-                        
+
                     </div>
 
                 </div>
-            </div>
-            </div>
-            <div class="col-6 float-right">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="font-weight-bold text-center">YORUMLAR</h3>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        @foreach (var comment in Model.Comments)
-                        {
-                            <div class="card mt-3" style="width: 72rem;">
-                                <div class="card-body">
-                                    <p class="card-text">Yorum : @comment.COMMENT</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="float-left">
-                                        Puan : @comment.POINT
-
-                                    </div>
-                                    <div class="float-right">
-                                        <p class="card-text">Ad-Soyad : @(comment.USER.NAME + " " + comment.USER.LAST_NAME)</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-                </div>
+                
             </div>
         </div>
+        <div class="col-6 float-right">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="font-weight-bold text-center">YORUMLAR</h3>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="card mt-3" style="width: 72rem;">
+                            <div class="card-body">
+                                <p class="card-text">Yorum : @comment.COMMENT</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="float-left">
+                                    Puan : @comment.POINT
+
+                                </div>
+                                <div class="float-right">
+                                    <p class="card-text">Ad-Soyad : @(comment.USER.NAME + " " + comment.USER.LAST_NAME)</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 }

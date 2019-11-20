@@ -6,49 +6,38 @@
 
 @if (Model != null)
 {
-    <div class="container">
-        <div class=row>
-            <div class="col-md-12 ">
-
-                <div class="maintitle navbar navbar-expand-lg ">
-                    <a class="navbar-brand" href="#">Yazarlar</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#yazarlar">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse " id="yazarlar">
-                        <ul class="menu navbar-nav mr-auto ">
-
-                            <li class="over1 nav-item"><a class="btn btn-outline-dark nav-link">En Son Okunanlar</a></li>
-                            <li class="over1 nav-item"><a class="btn btn-outline-dark nav-link">En Çok Beğenilenler</a></li>
-                            <li class="over1 nav-item"><a class="btn btn-outline-dark nav-link">En Çok Okunanlar</a></li>
-                            <li class="over1 nav-item"><a class="btn btn-outline-dark nav-link">Alfabetik</a></li>
-                        </ul>
-                    </div>
-
-
-
+    <div class=row>
+        <div class="col-md-12 ">
+            <div class="maintitle navbar navbar-expand-lg ">
+                <a class="navbar-brand" href="#">Yazarlar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#yazarlar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="yazarlar">
+                    <ul class="menu navbar-nav mr-auto ">
+                        <li class="over1 nav-item"><a class="btn btn-outline-dark nav-link">En Son Okunanlar</a></li>
+                        <li class="over1 nav-item"><a class="btn btn-outline-dark nav-link">En Çok Beğenilenler</a></li>
+                        <li class="over1 nav-item"><a class="btn btn-outline-dark nav-link">En Çok Okunanlar</a></li>
+                        <li class="over1 nav-item"><a class="btn btn-outline-dark nav-link">Alfabetik</a></li>
+                    </ul>
                 </div>
-
             </div>
-
-        </div>
-
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-3 d-flex align-items-stretch">
-                    <div class="card mt-1 rounded" style="width: 28rem;">
-                        <img src="~/img/AuthorPhoto/@item.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.AUTHOR_NAME+" "+item.AUTHOR_LASTNAME) Fotoğrafı">
-                        <div class="card-body">
-                            <p class="card-text baslik">@item.AUTHOR_DESCRIPTION</p>
-                        </div>
-                        <a href="~/Author/TheAuthor/@item.AUTHOR_ID" class="btn btn-primary">@(item.AUTHOR_NAME + " " + item.AUTHOR_LASTNAME)</a>
-                    </div>
-                </div>
-            }
         </div>
     </div>
-
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-3 d-flex align-items-stretch">
+                <div class="card mt-1 rounded" style="width: 28rem;">
+                    <img src="~/img/AuthorPhoto/@item.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.AUTHOR_NAME+" "+item.AUTHOR_LASTNAME) Fotoğrafı">
+                    <div class="card-body">
+                        <p class="card-text baslik">@item.AUTHOR_DESCRIPTION</p>
+                    </div>
+                    <a href="~/Author/TheAuthor/@item.AUTHOR_ID" class="btn btn-primary">@(item.AUTHOR_NAME + " " + item.AUTHOR_LASTNAME)</a>
+                </div>
+            </div>
+        }
+    </div>
 }
 else
 {

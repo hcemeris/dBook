@@ -10,5 +10,6 @@ namespace dBook.ViewModels
         public Authors Author { get; set; }
         public List<Books> Books { get; set; }
         public List<AuthorComments> AuthorComments { get; set; }
+        public Boolean isFavorite { get; set; }
     }
 }

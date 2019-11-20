@@ -10,5 +10,9 @@ namespace dBook.ViewModels
         public Books Book { get; set; }
         public List<BookComments> Comments { get; set; }
         public Authors Author { get; set; }
+        public Boolean isRead { get; set; }
+        public Boolean isWant { get; set; }
+
+
     }
 }

@@ -21,11 +21,47 @@ namespace dBook.Controllers
             var theBook = db.Books.Include(a => a.AUTHOR).Include(k => k.CATEGORY).Where(x => x.BOOK_ID == id).FirstOrDefault() ;
             var auhtor = db.Authors.Find(theBook.AUTHOR.AUTHOR_ID);
             var comments = db.BookComments.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.BOOK.BOOK_ID == id).ToList();
-            BookViewModel BookModel = new BookViewModel();
-            BookModel.Author = auhtor;
-            BookModel.Book = theBook;
-            BookModel.Comments = comments;
-            return View(BookModel);
+            if(User.Identity.Name != null)
+            {
+                var username = User.Identity.Name;
+                var user = db.Users.Where(x => x.USERNAME == username).FirstOrDefault();
+                var isRead = db.ReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == theBook.BOOK_ID && x.USER.USER_ID == user.USER_ID).Count();
+                var isWant = db.WantReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == theBook.BOOK_ID && x.USER.USER_ID== user.USER_ID).Count();
+
+                BookViewModel BookModel = new BookViewModel();
+                BookModel.Author = auhtor;
+                BookModel.Book = theBook;
+                BookModel.Comments = comments;
+                if (isRead > 0)
+                {
+                    BookModel.isRead = true;
+                }
+                else
+                {
+                    BookModel.isRead = false;
+                }
+                if (isWant > 0)
+                {
+                    BookModel.isWant = true;
+                }
+                else
+                {
+                    BookModel.isWant = false;
+                }
+
+                return View(BookModel);
+            }
+            else
+            {
+                BookViewModel BookModel = new BookViewModel();
+                BookModel.Author = auhtor;
+                BookModel.Book = theBook;
+                BookModel.Comments = comments;
+                return View(BookModel);
+
+            }
+
+
         }
         [HttpPost]
         public ActionResult CommentBook(int id, string _point, string _comment)

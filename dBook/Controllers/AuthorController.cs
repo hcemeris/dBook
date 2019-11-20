@@ -21,10 +21,21 @@ namespace dBook.Controllers
             var author = db.Authors.Find(id);
             var books = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).Where(x => x.AUTHOR.AUTHOR_ID == id).ToList();
             var comments = db.AuthorComments.Include(x => x.USER).Include(a => a.AUTHOR).Where(c => c.AUTHOR.AUTHOR_ID == author.AUTHOR_ID).ToList();
+            User user = db.Users.Where(x => x.USERNAME == User.Identity.Name).FirstOrDefault();
+            var isFavorite = db.FavoriteAuthors.Include(a => a.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID && x.AUTHOR.AUTHOR_ID == id).Count();
             AuthorViewModel AuthorView = new AuthorViewModel();
             AuthorView.Author = author;
             AuthorView.Books = books;
             AuthorView.AuthorComments = comments;
+            if (isFavorite > 0)
+            {
+                AuthorView.isFavorite = true;
+            }
+            else
+            {
+                AuthorView.isFavorite = false;
+
+            }
             return View(AuthorView);
         }
         [HttpPost]
