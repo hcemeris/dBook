@@ -7,12 +7,14 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+    <div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center ">
             <h3 class="font-weight-bold">Son Eklenen Kitaplar</h3>
         </div>
-
     </div>
+    <br />
+
     <div class="row">
         @foreach (var book in Model)
         {
@@ -21,15 +23,81 @@
                     <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h4 class="card-title font-weight-bold">@book.BOOK_NAME</h4>
-                        <p class="card-text">@book.BOOK_DESCRIPTION</p>
+                        <p class="card-text baslik">@book.BOOK_DESCRIPTION</p>
                     </div>
                 </div>
             </div>
         }
 
     </div>
+    <br />
+
+    <div class="row">
+        <div class="col-12 text-center ">
+            <h3 class="font-weight-bold">En Çok Okunan Kitaplar</h3>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title font-weight-bold">@book.BOOK_NAME</h4>
+                        <p class="card-text baslik">@book.BOOK_DESCRIPTION</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-12 text-center ">
+            <h3 class="font-weight-bold">En Çok Okunan Yazarlar</h3>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title font-weight-bold">@book.BOOK_NAME</h4>
+                        <p class="card-text baslik">@book.BOOK_DESCRIPTION</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <br />
+    </div>
+
+
+
+
 }
 else
 {
-    <p>Giriş Yap gel</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 text-center ">
+
+                <div class="col-4 ortala">
+                    <h3 class="font-weight-bold ">Lütfen Giriş Yapınız.</h3>
+                    <button type="button" class="btn btn-primary">Giriş Ekranına Git</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 }
