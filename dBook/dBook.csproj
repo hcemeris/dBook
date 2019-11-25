@@ -107,6 +107,7 @@
     <Content Include="Content\img\grey.jpg" />
     <Content Include="Content\img\kitap.jpg" />
     <Content Include="Content\img\sabahattinali.jpg" />
+    <Content Include="Content\img\seckin.jpg" />
     <Content Include="Content\main.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
