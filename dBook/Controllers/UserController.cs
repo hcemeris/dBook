@@ -87,8 +87,8 @@ namespace dBook.Controllers
 
             return View();
         }
-        [Authorize]
-        public ActionResult UserPage(int id)
+        //[Authorize]
+        public ActionResult UserPage()
         {
             //if (User.Identity.IsAuthenticated)
             //{
@@ -99,7 +99,7 @@ namespace dBook.Controllers
             //}
             return View();
         }
-        [Authorize]
+        //[Authorize]
         public ActionResult MyPage(int id)
         {
             if (User.Identity.IsAuthenticated)
