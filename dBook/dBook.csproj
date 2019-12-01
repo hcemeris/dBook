@@ -184,6 +184,7 @@
     <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="ViewModels\CategoryBooks.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
