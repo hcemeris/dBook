@@ -23,6 +23,11 @@ namespace dBook
                 url: "{controller}/{action}/{s}",
                 defaults: new { controller = "Home", action = "CategoryResult", s = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "MyPage",
+                url: "{controller}/{action}/{username}",
+                defaults: new { controller = "User", action = "MyPage", username = UrlParameter.Optional }
+            );
         }
     }
 }

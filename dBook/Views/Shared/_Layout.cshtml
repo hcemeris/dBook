@@ -64,7 +64,7 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link btn btn-outline-secondary  mr-3" href="~/User/MyPage" style="color:#faf6f6">Profil</a>
+                        @Html.ActionLink("Profil","MyPage","User",new { username=User.Identity.Name},new { @style="color:#faf6f6" ,@class="nav-link btn btn-outline-secondary mr-3"})
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-secondary bg-danger" href="~/User/Logout" style="color:#faf6f6">Çıkış Yap</a>
