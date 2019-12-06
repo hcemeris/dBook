@@ -6,69 +6,86 @@
 
 <div class="row">
     <div class="col-12">
-        <h4>Kullanıcılar</h4>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Kullanıcı Adı</th>
-                    <th scope="col">Ad Soyad</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in Model.Users)
-                {
-                    <tr>
-                        <td>@user.USERNAME</td>
-                        <th scope="row">@(user.NAME + " " + user.LAST_NAME)</th>
-                    </tr>
-                }
 
-            </tbody>
-        </table>
+        <div class="font-weight-bold text-center">
+            <h2>"aaaa" İçin Arama Sonuçları</h2>
+        </div>
 
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <h4>Yazarlar</h4>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Ad Soyad</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var author in Model.Authors)
-                {
-                    <tr>
-                        <td>@(author.AUTHOR_NAME + " " + author.AUTHOR_LASTNAME)</td>
-                    </tr>
-                }
+        <div class="col-12">
+            <div class="row">
+                <div class="btn-group btn-group-lg " role="group" aria-label="...">
+                    <a class="btn btn-success" href="#kitaplar" aria-controls="kitaplar" id="ktp">Kitaplar</a>
+                    <a class="btn btn-success" href="#yazarlar" aria-controls="yazarlar" id="yzr">Yazarlar</a>
+                    <a class="btn btn-success" href="#kullacilar" aria-controls="kullanicilar" id="kllnc">Kullanıcılar</a>
+                </div>
+            </div>
+        </div>
 
-            </tbody>
-        </table>
 
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <h4>Kitaplar</h4>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Kitap</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var book in Model.Books)
-                {
-                    <tr>
-                        <td>@book.BOOK_NAME</td>
-                    </tr>
-                }
+        <div class="col-12">
+            <div id="kitaplar">
+                <div class="row">
+                    <div class="col-3 d-flex align-items-stretch">
+                        <div class="card mt-1 rounded" style="width: 26rem;">
+                            <img src="~/Content/img/kitap.jpg" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="">
+                            <div class="card-body ">
+                                <h5 class="card-title font-weight-bold text-center "><a href="">asd</a></h5>
+                                <p class="card-text baslik "> asd</p>
 
-            </tbody>
-        </table>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item font-weight-bold">asd</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div id="yazarlar">
+                <div class="row">
+                    <div class="col-3 d-flex align-items-stretch">
+                        <div class="card mt-1 rounded" style="width: 26rem;">
+                            <img src="~/Content/img/seckin.jpg" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="">
+                            <div class="card-body ">
+                                <h5 class="card-title font-weight-bold text-center "><a href="">asd</a></h5>
+                                <p class="card-text baslik "> asd</p>
+
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item font-weight-bold">asd</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div id="kullanicilar">
+                <div class="row">
+                    <div class="col-3 d-flex align-items-stretch">
+                        <div class="card mt-1 rounded" style="width: 26rem;">
+                            <img src="~/Content/img/sabahattinali.jpg" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="">
+                            <div class="card-body ">
+                                <h5 class="card-title font-weight-bold text-center "><a href="">asd</a></h5>
+                                <p class="card-text baslik "> asd</p>
+
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item font-weight-bold">asd</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                document.getElementById("ktp").click();
+            });
+        </script>
+        <script src="~/Scripts/dBook.js"></script>
+
 
     </div>
 </div>

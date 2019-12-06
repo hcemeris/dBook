@@ -39,3 +39,18 @@ $("#yorumalan").click(function () {
     $("#example2").hide();
     $("#example4").show();
 });
+$("#ktp").click(function () {
+    $("#yazarlar").hide();
+    $("#kullanicilar").hide();
+    $("#kitaplar").show();
+});
+$("#yzr").click(function () {
+    $("#yazarlar").show();
+    $("#kullanicilar").hide();
+    $("#kitaplar").hide();
+});
+$("#kllnc").click(function () {
+    $("#yazarlar").hide();
+    $("#kullanicilar").show();
+    $("#kitaplar").hide();
+});
