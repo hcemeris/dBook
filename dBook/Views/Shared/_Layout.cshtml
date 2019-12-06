@@ -40,9 +40,7 @@
 
                         <li class="nav-item dropdown">
                             <div class="dropdown-d">
-                                <a class="nav-link dropdown-toggle dropbtn " style="color:#faf6f6" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Kategoriler
-                                </a>
+                                    @Html.ActionLink("Kategoriler","CategoryResult","Home",new { @class="nav-link dropdown-toggle dropbtn"})
 
                                 <div class="dropdown-content dropdown-menu " aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="#">Edebiyat</a>
@@ -98,9 +96,7 @@
 
                         <li class="nav-item dropdown">
                             <div class="dropdown-d">
-                                <a class="nav-link dropdown-toggle dropbtn " style="color:#faf6f6" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Kategoriler
-                                </a>
+                                @Html.ActionLink("Kategoriler", "CategoryResult", "Home",null, new { @class = "nav-link dropdown-toggle dropbtn" })
 
                                 <div class="dropdown-content dropdown-menu " aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="#">Edebiyat</a>
