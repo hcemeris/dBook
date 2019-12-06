@@ -5,12 +5,54 @@
 }
 
 <div class="row">
-    <h1>Kategori : @Model.Category.NAME</h1>
     <div class="col-12">
-        <p>Kitaplar :</p>
-        @foreach (var item in Model.Books)
-        {
-            <b>@item.BOOK_NAME</b>
-        }
+        <div class="row">
+            <div class="btn-group-lg" role="group" aria-label="...">
+                <button type="button" class="btn btn-success">Roman</button>
+                <button type="button" class="btn btn-success">Edebiyat</button>
+                <button type="button" class="btn btn-success">Bilim</button>
+                <button type="button" class="btn btn-success">Felsefe</button>
+                <button type="button" class="btn btn-success">Sanat-Tasarım</button>
+                <button type="button" class="btn btn-success">Tarih</button>
+                <button type="button" class="btn btn-success">Eğitim</button>
+                <button type="button" class="btn btn-success">Çizgi Roman</button>
+
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-center ">
+                        <h3 class="font-weight-bold">Son Eklenen Kitaplar</h3>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    @*son eklenen kitaplar buraya*@ 
+
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-12 text-center ">
+                        <h3 class="font-weight-bold">En Çok Okunan Kitaplar</h3>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                   @*en çok okunan kitaplar buraya*@
+
+                </div>
+                <br />
+
+                
+                <div>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 </div>
