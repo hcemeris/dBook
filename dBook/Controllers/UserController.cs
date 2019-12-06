@@ -145,6 +145,7 @@ namespace dBook.Controllers
             ReadBooksList new_read = new ReadBooksList();
             new_read.BOOK = book;
             new_read.USER = user;
+            book.READ_NUMB++;
             db.ReadBooksLists.Add(new_read);
             db.SaveChanges();
             return RedirectToAction("TheBook","Book",new { id=id});
@@ -154,6 +155,7 @@ namespace dBook.Controllers
             var book = db.Books.Find(id);
             var user = db.Users.Where(x => x.USERNAME == User.Identity.Name).FirstOrDefault();
             ReadBooksList delete = db.ReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == id && x.USER.USER_ID == user.USER_ID).FirstOrDefault();
+            book.READ_NUMB--;
             db.ReadBooksLists.Remove(delete);
             db.SaveChanges();
             return RedirectToAction("TheBook", "Book", new { id = id });

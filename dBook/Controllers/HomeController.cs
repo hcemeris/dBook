@@ -17,27 +17,23 @@ namespace dBook.Controllers
         }
         public ActionResult HomePage()
         {
-            var books = db.Books.ToList().OrderBy(x=>x.BOOK_ID);
+            var books = db.Books.ToList().OrderBy(x => x.BOOK_ID);
             return View(books);
         }
-        public ActionResult CategoryResult(string s)
+        public ActionResult CategoryResult()
         {
-            if (s != null)
-            {
-                var category = db.Categories.Where(x => x.NAME == s).FirstOrDefault();
-                var books = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).Where(x => x.CATEGORY.NAME == s).ToList();
-                CategoryBooks CategoryBooks = new CategoryBooks();
-                CategoryBooks.Books = books;
-                CategoryBooks.Category = category;
-                return View(CategoryBooks);
-
-            }
-            else
-            {
-                return View();
-            }
-
-
+            CategoryViewModel categoryViewModel = new CategoryViewModel();
+            categoryViewModel.Categories = db.Categories.ToList();
+            categoryViewModel.LastAdded = db.Books.Include(a => a.AUTHOR).OrderByDescending(x => x.BOOK_ID).Take(4).ToList();
+            categoryViewModel.MostReaded = db.Books.OrderByDescending(x => x.READ_NUMB).Take(4).ToList();
+            return View(categoryViewModel);
+        }
+        public ActionResult TheCategory(int id)
+        {
+            CategoryBooks categoryBooks = new CategoryBooks();
+            categoryBooks.Books = db.Books.Include(c => c.CATEGORY).Where(x => x.CATEGORY.CATEGORY_ID == id).ToList();
+            categoryBooks.Category = db.Categories.Find(id);
+            return View(categoryBooks);
         }
         [HttpPost]
         public ActionResult Search(string _search)
@@ -49,6 +45,6 @@ namespace dBook.Controllers
 
             return View(search_model);
         }
-        
+
     }
 }

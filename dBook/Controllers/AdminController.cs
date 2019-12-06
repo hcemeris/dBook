@@ -139,6 +139,16 @@ namespace dBook.Controllers
         {
             return View();
         }
-
+        public ActionResult CreateCategory()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateCategory(Category new_category)
+        {
+            db.Categories.Add(new_category);
+            db.SaveChanges();
+            return View();
+        }
     }
 }
