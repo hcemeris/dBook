@@ -21,10 +21,11 @@ namespace dBook.Controllers
             var theBook = db.Books.Include(a => a.AUTHOR).Include(k => k.CATEGORY).Where(x => x.BOOK_ID == id).FirstOrDefault() ;
             var auhtor = db.Authors.Find(theBook.AUTHOR.AUTHOR_ID);
             var comments = db.BookComments.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.BOOK.BOOK_ID == id).ToList();
-            if(User.Identity.Name != null)
+            var username = User.Identity.Name;
+            var user = db.Users.Where(x => x.USERNAME == username).FirstOrDefault();
+
+            if (user != null)
             {
-                var username = User.Identity.Name;
-                var user = db.Users.Where(x => x.USERNAME == username).FirstOrDefault();
                 var isRead = db.ReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == theBook.BOOK_ID && x.USER.USER_ID == user.USER_ID).Count();
                 var isWant = db.WantReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == theBook.BOOK_ID && x.USER.USER_ID== user.USER_ID).Count();
 
