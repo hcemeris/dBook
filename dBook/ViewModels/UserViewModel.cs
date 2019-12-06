@@ -11,5 +11,6 @@ namespace dBook.ViewModels
 
         public List<ReadBooksList> ReadBooksList { get; set; }
         public List<FavoriteAuthors> FavoriteAuthors { get; set; }
+        public User User { get; set; }
     }
 }

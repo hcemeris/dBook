@@ -157,7 +157,7 @@
                     {
                         <div class="card mt-3" style="width: 72rem;">
                             <div class="card-body">
-                                <p class="card-text">Yorum : @comment.COMMENT</p>
+                                <p class="card-text">@comment.COMMENT</p>
                             </div>
                             <div class="card-footer">
                                 <div class="float-left">
@@ -165,7 +165,7 @@
 
                                 </div>
                                 <div class="float-right">
-                                    <p class="card-text">Ad-Soyad : @(comment.USER.NAME + " " + comment.USER.LAST_NAME)</p>
+                                    <p class="card-text">@Html.ActionLink(comment.USER.USERNAME,"UserPage","User",new { id=comment.USER.USER_ID},null)</p>
 
                                 </div>
                             </div>

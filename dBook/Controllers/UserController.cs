@@ -88,27 +88,28 @@ namespace dBook.Controllers
 
             return View();
         }
-        //[Authorize]
-        //public ActionResult UserPage(int id)
-        //{
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        var current_username = User.Identity.Name;
-        //        var current_user = db.Users.Where(x => x.USERNAME == current_username).FirstOrDefault();
-        //        var user = db.Users.Find(id);
-        //        UserViewModel userViewModel = new UserViewModel();
-        //        userViewModel.FavoriteAuthors = db.FavoriteAuthors.Include(u => u.USER).Include(a => a.AUTHOR).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
-        //        userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
-        //        userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
-        //        return View(userViewModel);
-        //    }
-        //    return View();
-        //}
-        public ActionResult UserPage()
+        [Authorize]
+        public ActionResult UserPage(int id)
         {
-            
+            if (User.Identity.IsAuthenticated)
+            {
+                var current_username = User.Identity.Name;
+                var current_user = db.Users.Where(x => x.USERNAME == current_username).FirstOrDefault();
+                var user = db.Users.Find(id);
+                UserViewModel userViewModel = new UserViewModel();
+                userViewModel.FavoriteAuthors = db.FavoriteAuthors.Include(u => u.USER).Include(a => a.AUTHOR).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                userViewModel.User = user;
+                return View(userViewModel);
+            }
             return View();
         }
+        //public ActionResult UserPage()
+        //{
+            
+        //    return View();
+        //}
         //[Authorize]
         public ActionResult MyPage(string username)
         {
