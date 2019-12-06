@@ -8,7 +8,7 @@
     <div class="col-12">
 
         <div class="font-weight-bold text-center">
-            <h2>"aaaa" İçin Arama Sonuçları</h2>
+            <h2>"@Model.Searched" İçin Arama Sonuçları</h2>
         </div>
 
         <div class="col-12">
@@ -25,57 +25,60 @@
         <div class="col-12">
             <div id="kitaplar">
                 <div class="row">
-                    <div class="col-3 d-flex align-items-stretch">
-                        <div class="card mt-1 rounded" style="width: 26rem;">
-                            <img src="~/Content/img/kitap.jpg" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="">
-                            <div class="card-body ">
-                                <h5 class="card-title font-weight-bold text-center "><a href="">asd</a></h5>
-                                <p class="card-text baslik "> asd</p>
+                    @foreach (var item in Model.Books)
+                    {
+                        <div class="col-3 d-flex align-items-stretch">
+                            <div class="card mt-1 rounded" style="width: 26rem;">
+                                <img src="~/img/BookPhoto/@item.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="">
+                                <div class="card-body ">
+                                    <h5 class="card-title font-weight-bold text-center ">@Html.ActionLink(item.BOOK_NAME, "TheBook", "Book", new { id = item.BOOK_ID }, null)</h5>
+                                    <p class="card-text baslik ">@item.BOOK_DESCRIPTION</p>
 
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item font-weight-bold text-center">@(item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME)</li>
+                                </ul>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item font-weight-bold">asd</li>
-                            </ul>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
         <div class="col-12">
             <div id="yazarlar">
                 <div class="row">
-                    <div class="col-3 d-flex align-items-stretch">
-                        <div class="card mt-1 rounded" style="width: 26rem;">
-                            <img src="~/Content/img/seckin.jpg" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="">
-                            <div class="card-body ">
-                                <h5 class="card-title font-weight-bold text-center "><a href="">asd</a></h5>
-                                <p class="card-text baslik "> asd</p>
+                    @foreach (var item in Model.Authors)
+                    {
+                        <div class="col-3 d-flex align-items-stretch">
+                            <div class="card mt-1 rounded" style="width: 26rem;">
+                                <img src="~/img/AuthorPhoto/@item.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="">
+                                <div class="card-body ">
+                                    <h5 class="card-title font-weight-bold text-center ">@Html.ActionLink((item.AUTHOR_NAME + " " + item.AUTHOR_LASTNAME), "TheAuthor", "Author", new { id = item.AUTHOR_ID }, null)</h5>
+                                    <p class="card-text baslik ">@item.AUTHOR_DESCRIPTION</p>
 
+                                </div>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item font-weight-bold">asd</li>
-                            </ul>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
         <div class="col-12">
             <div id="kullanicilar">
                 <div class="row">
-                    <div class="col-3 d-flex align-items-stretch">
-                        <div class="card mt-1 rounded" style="width: 26rem;">
-                            <img src="~/Content/img/sabahattinali.jpg" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="">
-                            <div class="card-body ">
-                                <h5 class="card-title font-weight-bold text-center "><a href="">asd</a></h5>
-                                <p class="card-text baslik "> asd</p>
+                    @foreach (var item in Model.Users)
+                    {
+                        <div class="col-3 d-flex align-items-stretch">
+                            <div class="card mt-1 rounded" style="width: 26rem;">
+                                <img src="~/img/UserPhoto/@item.USER_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="">
+                                <div class="card-body ">
+                                    <h5 class="card-title font-weight-bold text-center ">@Html.ActionLink(item.USERNAME, "UserPage", "User", new { id = item.USER_ID }, null)</h5>
+                                    <p class="card-text baslik text-center">@(item.NAME + " " + item.LAST_NAME)</p>
 
+                                </div>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item font-weight-bold">asd</li>
-                            </ul>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>

@@ -121,7 +121,12 @@ namespace dBook.Controllers
                 if (current_user.USERNAME == username)
                 {
                     var user = db.Users.Where(x => x.USERNAME == username).FirstOrDefault() ;
-                    return View(user);
+                    UserViewModel userViewModel = new UserViewModel();
+                    userViewModel.FavoriteAuthors = db.FavoriteAuthors.Include(u => u.USER).Include(a => a.AUTHOR).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                    userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                    userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                    userViewModel.User = user;
+                    return View(userViewModel);
                 }
                 else
                 {
@@ -129,11 +134,6 @@ namespace dBook.Controllers
                 }
             }
             else return HttpNotFound();
-        }
-        [Authorize]
-        public ActionResult UserSettings()
-        {
-            return View();
         }
 
         [Authorize]
@@ -203,6 +203,29 @@ namespace dBook.Controllers
             db.FavoriteAuthors.Remove(delete);
             db.SaveChanges();
             return RedirectToAction("TheAuthor", "Author", new { id = id });
+        }
+        public ActionResult UserSettings(int id)
+        {
+            var user = db.Users.Find(id);
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult UserSettings(User user, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    string path = Path.GetFileName(file.FileName);
+                    var upload_path = Path.Combine(Server.MapPath("~/img/UserPhoto/"), path);
+                    file.SaveAs(upload_path);
+                    user.USER_PHOTO= path;
+                }
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("MyPage","User",new { username=user.USERNAME});
+            }
+            return View();
         }
         [Authorize]
         public ActionResult Logout()

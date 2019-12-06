@@ -1,4 +1,5 @@
-﻿@model dBook.Models.User
+﻿@using dBook.ViewModels
+@model dBook.ViewModels.UserViewModel
 
 @{
     ViewBag.Title = "MyPage";
@@ -10,53 +11,56 @@
         <div class="row">
             <div class="col-3">
                 <div class="text-center">
-                    <img src="~/Content/img/seckin.jpg" width="200px" ; height="200px" ; style="border-radius: 100px;"><br /><br />
-                    <p class="card-text">Kazım Altan</p>
-                    <p class="card-text">25.10.2001</p>
-                    <p class="card-text"><small>13 Eylül 2012'de katıldı.</small></p>
-                    <button type="button" class="btn btn-primary btn-sm">Ayarlar</button>
-                    </div>
+                    <img src="~/img/UserPhoto/@Model.User.USER_PHOTO" style="border-radius: 100px;width:200px;height:200px;"><br /><br />
+                    <p class="card-text">@(Model.User.NAME + " " + Model.User.LAST_NAME)</p>
+                    <p class="card-text"><small>@(Model.User.REGISTER_DATE.Day + "." + Model.User.REGISTER_DATE.Month + "." + Model.User.REGISTER_DATE.Year) tarihinde katıldı.</small></p>
+                    @Html.ActionLink("Ayarlar","UserSettings","User",new { id=Model.User.USER_ID},new { @class="btn btn-primary btn-sm"})
+
                 </div>
+            </div>
 
             <div class="col-9">
                 <p>
                     <a class="btn btn-success" data-toggle="collapse" href="#collapseExample1" role="button" aria-controls="collapseExample1" id="btn1">
-                        Okuduklarım
+                        Okuduğu Kitaplar
                     </a>
                     <a class="btn btn-success" data-toggle="collapse" href="#collapseExample2" role="button" aria-controls="collapseExample2" id="btn2">
-                        Okuyacaklarım
+                        Okuyacağı Kitaplar
                     </a>
                     <a class="btn btn-success" data-toggle="collapse" href="#collapseExample3" role="button" aria-controls="collapseExample3" id="btn3">
-                        Favori Yazarlarım
+                        Favori Yazarları
                     </a>
 
                 </p>
-                <div class="collapse " id="collapseExample1">
+                <div class="collapse" id="collapseExample1">
                     <div class="card card-body ">
-                        <h5> Okuduklarım<br /></h5>
-                        Okuduklarım<br />
-                        Okuduklarım<br />
-                        Okuduklarım<br />
+                        <h5> Okuduğu Kitaplar<br /></h5>
+                        @foreach (var item in Model.ReadBooksList)
+                        {
+                            <span>@(Html.ActionLink(item.BOOK.BOOK_NAME, "TheBook", "Book", new { id = item.BOOK.BOOK_ID }, null)) - @Html.ActionLink((item.BOOK.AUTHOR.AUTHOR_NAME + " " + item.BOOK.AUTHOR.AUTHOR_LASTNAME), "TheAuthor", "Author", new { id = item.BOOK.AUTHOR.AUTHOR_ID }, null)</span>
+                            <br />
+                        }
                     </div>
                 </div>
                 <div class="collapse" id="collapseExample2">
                     <div class="card card-body">
-                        Okuyacaklarım<br />
-                        Okuyacaklarım<br />
-                        Okuyacaklarım<br />
+                        @foreach (var item in Model.WantReadBooksList)
+                        {
+                            <span>@(Html.ActionLink(item.BOOK.BOOK_NAME, "TheBook", "Book", new { id = item.BOOK.BOOK_ID }, null)) - @Html.ActionLink((item.BOOK.AUTHOR.AUTHOR_NAME + " " + item.BOOK.AUTHOR.AUTHOR_LASTNAME), "TheAuthor", "Author", new { id = item.BOOK.AUTHOR.AUTHOR_ID }, null)</span>
+
+                        }
                     </div>
                 </div>
                 <div class="collapse" id="collapseExample3">
                     <div class="card card-body">
-                        Favori Yazarlar<br />
-                        Favori Yazarlar<br />
-                        Favori Yazarlar<br />
+                        @foreach (var item in Model.FavoriteAuthors)
+                        {
+                            <span>@Html.ActionLink((item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME), "TheAuthor", "Author", new { id = item.AUTHOR.AUTHOR_ID }, null)</span>
+                        }
                     </div>
                 </div>
 
                 <script src="~/Scripts/dBook.js"></script>
-
-
 
             </div>
         </div>
