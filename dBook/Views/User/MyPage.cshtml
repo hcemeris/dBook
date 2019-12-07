@@ -10,8 +10,8 @@
 
         <div class="row">
             <div class="col-3">
-                <div class="text-center">
-                    <img src="~/img/UserPhoto/@Model.User.USER_PHOTO" style="border-radius: 100px;width:200px;height:200px;"><br /><br />
+                <div class="text-center ">
+                    <img src="~/img/UserPhoto/@Model.User.USER_PHOTO"  style="border-radius:100px; width:200px;height:200px;"><br /><br />
                     <p class="card-text">@(Model.User.NAME + " " + Model.User.LAST_NAME)</p>
                     <p class="card-text"><small>@(Model.User.REGISTER_DATE.Day + "." + Model.User.REGISTER_DATE.Month + "." + Model.User.REGISTER_DATE.Year) tarihinde katıldı.</small></p>
                     @Html.ActionLink("Ayarlar","UserSettings","User",new { id=Model.User.USER_ID},new { @class="btn btn-primary btn-sm"})
@@ -34,7 +34,7 @@
                 </p>
                 <div class="collapse" id="collapseExample1">
                     <div class="card card-body ">
-                        <h5> Okuduğu Kitaplar<br /></h5>
+                        <h5 class="font-weight-bold"> Okuduğu Kitaplar<br /></h5>
                         @foreach (var item in Model.ReadBooksList)
                         {
                             <span>@(Html.ActionLink(item.BOOK.BOOK_NAME, "TheBook", "Book", new { id = item.BOOK.BOOK_ID }, null)) - @Html.ActionLink((item.BOOK.AUTHOR.AUTHOR_NAME + " " + item.BOOK.AUTHOR.AUTHOR_LASTNAME), "TheAuthor", "Author", new { id = item.BOOK.AUTHOR.AUTHOR_ID }, null)</span>
@@ -44,6 +44,7 @@
                 </div>
                 <div class="collapse" id="collapseExample2">
                     <div class="card card-body">
+                        <h5 class="font-weight-bold"> Okuyacağı Kitaplar<br /></h5>
                         @foreach (var item in Model.WantReadBooksList)
                         {
                             <span>@(Html.ActionLink(item.BOOK.BOOK_NAME, "TheBook", "Book", new { id = item.BOOK.BOOK_ID }, null)) - @Html.ActionLink((item.BOOK.AUTHOR.AUTHOR_NAME + " " + item.BOOK.AUTHOR.AUTHOR_LASTNAME), "TheAuthor", "Author", new { id = item.BOOK.AUTHOR.AUTHOR_ID }, null)</span>
@@ -53,6 +54,7 @@
                 </div>
                 <div class="collapse" id="collapseExample3">
                     <div class="card card-body">
+                        <h5 class="font-weight-bold">Favori Yazarları<br /></h5>
                         @foreach (var item in Model.FavoriteAuthors)
                         {
                             <span>@Html.ActionLink((item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME), "TheAuthor", "Author", new { id = item.AUTHOR.AUTHOR_ID }, null)</span>

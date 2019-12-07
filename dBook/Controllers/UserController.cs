@@ -123,8 +123,8 @@ namespace dBook.Controllers
                     var user = db.Users.Where(x => x.USERNAME == username).FirstOrDefault() ;
                     UserViewModel userViewModel = new UserViewModel();
                     userViewModel.FavoriteAuthors = db.FavoriteAuthors.Include(u => u.USER).Include(a => a.AUTHOR).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
-                    userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
-                    userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                    userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(a=>a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                    userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(a => a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
                     userViewModel.User = user;
                     return View(userViewModel);
                 }

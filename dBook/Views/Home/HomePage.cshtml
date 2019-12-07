@@ -18,8 +18,8 @@
     <div class="row">
         @foreach (var book in Model)
         {
-            <div class="col-3">
-                <div class="card" style="width: 18rem;">
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem; ">
                     <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="Kitap görseli">
                     <div class="card-body">
                         <h4 class="card-title font-weight-bold">@Html.ActionLink(book.BOOK_NAME,"TheBook","Book",new { id=book.BOOK_ID},null)</h4>
@@ -33,7 +33,7 @@
     <br />
 
     <div class="row">
-        <div class="col-12 text-center ">
+        <div class="col-md-12 text-center ">
             <h3 class="font-weight-bold">En Çok Okunan Kitaplar</h3>
         </div>
     </div>
@@ -42,8 +42,8 @@
     <div class="row">
         @foreach (var book in Model)
         {
-            <div class="col-3">
-                <div class="card" style="width: 18rem;">
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem; ">
                     <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="...">
                     <div class="card-body">
                         <h4 class="card-title font-weight-bold">@Html.ActionLink(book.BOOK_NAME, "TheBook", "Book", new { id = book.BOOK_ID }, null)</h4>
@@ -66,8 +66,8 @@
     <div class="row">
         @foreach (var book in Model)
         {
-            <div class="col-3">
-                <div class="card" style="width: 18rem;">
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem; ">
                     <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="...">
                     <div class="card-body">
                         <h4 class="card-title font-weight-bold">@book.BOOK_NAME</h4>
@@ -89,7 +89,7 @@ else
 {
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 text-center ">
+            <div class="col-md-12 text-center ">
 
                 <div class="col-4 ortala">
                     <h3 class="font-weight-bold ">Lütfen Giriş Yapınız.</h3>
