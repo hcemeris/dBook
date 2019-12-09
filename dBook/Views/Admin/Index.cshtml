@@ -3,9 +3,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-@Html.ActionLink("Books Panel","BooksControl","Admin")
-@Html.ActionLink("Authors Panel","AuthorsControl","Admin")
-@Html.ActionLink("Comments Panel","CommentsControl","Admin")
-@Html.ActionLink("User Panel","UserControl","Admin")
+<div class="row">
+    <div class="col-12">
+        <div class="btn-group-lg text-center" role="group" aria-label="Basic example">
+            @Html.ActionLink("Kitap Paneli", "BooksControl", "Admin", null, new { @class = "btn btn-secondary" })
+            @Html.ActionLink("Yazar Paneli", "AuthorsControl", "Admin", null, new { @class = "btn btn-secondary" })
+            @Html.ActionLink("Yorum Paneli", "CommentsControl", "Admin", null, new { @class = "btn btn-secondary" })
+            @Html.ActionLink("Üye Paneli", "UserControl", "Admin", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>
+    

@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 using dBook.Models;
 namespace dBook.Controllers
 {
@@ -16,19 +18,20 @@ namespace dBook.Controllers
         {
             return View();
         }
-        public ActionResult BooksControl()
+        public ActionResult BooksControl(int? PageNo)
         {
-            var books = db.Books.ToList();
+            int _pageNo = PageNo ?? 1;
+            var books = db.Books.OrderBy(x => x.BOOK_ID).ToPagedList<Books>(_pageNo, 1);
             return View(books);
         }
         public ActionResult CreateBook()
         {
             var authors = db.Authors.ToList();
-            ViewBag.authors = new SelectList(authors,"AUTHOR_ID","AUTHOR_NAME");
+            ViewBag.authors = new SelectList(authors, "AUTHOR_ID", "AUTHOR_NAME");
             return View();
         }
         [HttpPost]
-        public ActionResult CreateBook(Books book,HttpPostedFileBase file)
+        public ActionResult CreateBook(Books book, HttpPostedFileBase file)
         {
             var authors = db.Authors.ToList();
             ViewBag.authors = new SelectList(authors, "AUTHOR_ID", "AUTHOR_NAME");
@@ -50,10 +53,11 @@ namespace dBook.Controllers
         public ActionResult EditBook(int id)
         {
             var book = db.Books.Find(id);
+            ViewBag.bookname = book.BOOK_NAME;
             return View(book);
         }
         [HttpPost]
-        public ActionResult EditBook([Bind(Include ="BOOK_ID,BOOK_NAME,BOOK_DESCRIPTION")]Books book)
+        public ActionResult EditBook([Bind(Include = "BOOK_ID,BOOK_NAME,BOOK_DESCRIPTION")]Books book)
         {
             if (ModelState.IsValid)
             {
@@ -66,13 +70,23 @@ namespace dBook.Controllers
         public ActionResult DeleteBook(int id)
         {
             Books book = db.Books.Find(id);
-            if(book == null)
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            db.Books.Remove(book);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+                var read_list = db.ReadBooksLists.Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == id).ToList();
+                var want_list = db.WantReadBooksLists.Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == id).ToList();
+                var comments = db.BookComments.Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == id).ToList();
+                db.ReadBooksLists.RemoveRange(read_list);
+                db.WantReadBooksLists.RemoveRange(want_list);
+                db.BookComments.RemoveRange(comments);
+                db.Books.Remove(book);
+                db.SaveChanges();
+
+            }
+            return RedirectToAction("BooksControl");
         }
         public ActionResult AuthorsControl()
         {

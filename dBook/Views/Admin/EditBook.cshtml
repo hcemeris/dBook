@@ -4,50 +4,46 @@
     ViewBag.Title = "EditBook";
 }
 
-<h2>EditBook</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Books</h4>
+        <h3 class="font-weight-bold text-center">Kitabı Düzenle</h3>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.BOOK_ID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BOOK_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BOOK_NAME, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BOOK_NAME, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <p class="control-label col-md-2 font-weight-bold">Kitap Adı</p>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BOOK_NAME, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BOOK_NAME, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BOOK_DESCRIPTION, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BOOK_DESCRIPTION, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BOOK_DESCRIPTION, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="form-group">
+        <p class="control-label col-md-2 font-weight-bold">Açıklama</p>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BOOK_PHOTO, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BOOK_PHOTO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BOOK_PHOTO, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BOOK_DESCRIPTION, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BOOK_DESCRIPTION, "", new { @class = "text-danger" })
         </div>
+    </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Değişiklikleri Kaydet" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="row">
+    <div class="col-12 col-md-12 text-center">
+        @Html.ActionLink("Listeye Geri dön", "BooksControl", null, new { @class = "btn btn-primary h3" })
+
+    </div>
 </div>
