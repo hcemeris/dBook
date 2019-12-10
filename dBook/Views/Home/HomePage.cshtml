@@ -19,10 +19,10 @@
         @foreach (var book in Model)
         {
             <div class="col-md-3">
-                <div class="card" style="width: 18rem; ">
+                <div class="card" style="width: 22rem; ">
                     <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="Kitap görseli">
                     <div class="card-body">
-                        <h4 class="card-title font-weight-bold">@Html.ActionLink(book.BOOK_NAME,"TheBook","Book",new { id=book.BOOK_ID},null)</h4>
+                        <h4 class="card-title font-weight-bold text-center">@Html.ActionLink(book.BOOK_NAME,"TheBook","Book",new { id=book.BOOK_ID},null)</h4>
                         <p class="card-text baslik">@book.BOOK_DESCRIPTION</p>
                     </div>
                 </div>
@@ -43,10 +43,10 @@
         @foreach (var book in Model)
         {
             <div class="col-md-3">
-                <div class="card" style="width: 18rem; ">
+                <div class="card" style="width: 22rem; ">
                     <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="...">
                     <div class="card-body">
-                        <h4 class="card-title font-weight-bold">@Html.ActionLink(book.BOOK_NAME, "TheBook", "Book", new { id = book.BOOK_ID }, null)</h4>
+                        <h4 class="card-title font-weight-bold text-center">@Html.ActionLink(book.BOOK_NAME, "TheBook", "Book", new { id = book.BOOK_ID }, null)</h4>
                         <p class="card-text baslik">@book.BOOK_DESCRIPTION</p>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
         @foreach (var book in Model)
         {
             <div class="col-md-3">
-                <div class="card" style="width: 18rem; ">
+                <div class="card" style="width: 22rem; ">
                     <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="...">
                     <div class="card-body">
                         <h4 class="card-title font-weight-bold">@book.BOOK_NAME</h4>

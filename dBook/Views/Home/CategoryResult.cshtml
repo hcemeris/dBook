@@ -5,19 +5,21 @@
 }
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-md-12">
         <div class="row">
             <div class="btn-group-lg" role="group" aria-label="...">
-                @foreach (var item in Model.Categories)
-                {
-                   <button type="button" class="btn btn-success">@Html.ActionLink(item.NAME,"TheCategory","Home",new { id = item.CATEGORY_ID},null) </button>
-                }
+                
+                    @foreach (var item in Model.Categories)
+                    {
+                        <button type="button" class="btn btn-light">@Html.ActionLink(item.NAME, "TheCategory", "Home", new { id = item.CATEGORY_ID }, null) </button>
+                    }
+                
 
             </div>
 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 text-center ">
+                    <div class="col-md-12 text-center ">
                         <h3 class="font-weight-bold">Son Eklenen Kitaplar</h3>
                     </div>
                 </div>
@@ -26,16 +28,16 @@
                 <div class="row">
                     @foreach (var item in Model.LastAdded)
                     {
-                    <div class="col-3 d-flex align-items-stretch">
-                        <div class="card mt-1 rounded" style="width: 18rem;">
+                    <div class="col-md-3 ">
+                        <div class="card m-auto" style="width: 22rem; ">
                             <img src="~/img/BookPhoto/@item.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@item.BOOK_NAME Fotoğrafı">
                             <div class="card-body ">
-                                <h5 class="card-title font-weight-bold text-center "><a href="~/Book/TheBook/@item.BOOK_ID">@item.BOOK_NAME</a></h5>
+                                <h4 class="card-title font-weight-bold text-center "><a href="~/Book/TheBook/@item.BOOK_ID">@item.BOOK_NAME</a></h4>
                                 <p class="card-text baslik ">@item.BOOK_DESCRIPTION</p>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            @*<ul class="list-group list-group-flush">
                                 <li class="list-group-item font-weight-bold">@(item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME)</li>
-                            </ul>
+                            </ul>*@
                         </div>
                     </div>
                     }
@@ -53,16 +55,16 @@
                 <div class="row">
                     @foreach (var item in Model.MostReaded)
                     {
-                        <div class="col-md-3 ">
-                            <div class="card" style="width: 18rem; ">
+                       <div class="col-md-3 ">
+                            <div class="card m-auto" style="width: 22rem;  ">
                                 <img src="~/img/BookPhoto/@item.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@item.BOOK_NAME Fotoğrafı">
                                 <div class="card-body ">
-                                    <h5 class="card-title font-weight-bold text-center "><a href="~/Book/TheBook/@item.BOOK_ID">@item.BOOK_NAME</a></h5>
+                                    <h4 class="card-title font-weight-bold text-center "><a href="~/Book/TheBook/@item.BOOK_ID">@item.BOOK_NAME</a></h4>
                                     <p class="card-text baslik ">@item.BOOK_DESCRIPTION</p>
                                 </div>
-                                <ul class="list-group list-group-flush">
+                                @*<ul class="list-group list-group-flush">
                                     <li class="list-group-item font-weight-bold">@(item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME)</li>
-                                </ul>
+                                </ul>*@
                             </div>
                         </div>
                     }
