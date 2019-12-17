@@ -38,3 +38,19 @@ $("#kllnc").click(function () {
     $("#kullanicilar").show();
     $("#kitaplar").hide();
 });
+//AUTHORLIST
+$("#authorAdaGore").click(function () {
+    $("#link2").hide();
+    $("#link3").hide();
+    $("#link1").show();
+});
+$("#authorFavoriSayi").click(function () {
+    $("#link1").hide();
+    $("#link3").hide();
+    $("#link2").show();
+});
+$("#authorEnCokOkunan").click(function () {
+    $("#link1").hide();
+    $("#link2").hide();
+    $("#link3").show();
+});

@@ -1,5 +1,5 @@
 ﻿@using dBook.ViewModels
-@model AuthorViewModel;
+@model AuthorListViewModel
 @{
     ViewBag.Title = "AuthorsList";
 }
@@ -10,36 +10,89 @@
         <div class="col-md-12 ">
 
             <div class="maintitle navbar navbar-expand-lg ">
-                <p class="navbar-brand" href="#">Kitaplar</p>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#kitaplar">
+                <p class="navbar-brand" href="#">Yazarlar</p>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#yazarlar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse " id="kitaplar">
+                <div class="collapse navbar-collapse " id="yazarlar">
                     <ul class="menu navbar-nav mr-auto ">
-                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#authorAdaGore" role="button" aria-controls="authorAdaGore" id="soneklenen">En Son Eklenenler</a></li>
-                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#authorFavoriSayi" role="button" aria-controls="authorFavoriSayi" id="cokokunan">En Çok Okunanlar</a></li>
-                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#authorEnCokOkunan" role="button" aria-controls="authorEnCokOkunan" id="cokokunan">En Çok Okunanlar</a></li>
+                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#link1" role="button" aria-controls="link1" id="soneklenen">Ada göre Sırala</a></li>
+                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#link2" role="button" aria-controls="link2" id="cokokunan">En favori Yazarlar</a></li>
+                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#link3" role="button" aria-controls="link3" id="cokokunan">En Çok Okunan Yazarlar</a></li>
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="col-md-12">
+            <div id="link1">
+                <div class="row">
+                    @foreach (var item in Model.OrderName)
+                    {
+                        <div class="col-md-3 d-flex align-items-stretch">
+                            <div class="card mt-1 mb-2 rounded m-auto" style="width: 22rem;">
+                                <img src="~/img/AuthorPhoto/@item.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.AUTHOR_NAME+" "+item.AUTHOR_LASTNAME) Fotoğrafı">
+                                <div class="card-body">
+                                    <p class="card-text baslik">@item.AUTHOR_DESCRIPTION</p>
+                                </div>
+                                <a href="~/Author/TheAuthor/@item.AUTHOR_ID" class="btn btn-primary">@(item.AUTHOR_NAME + " " + item.AUTHOR_LASTNAME)</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div id="link2">
+                <div class="row">
+                    @foreach (var item in Model.MostFavorite)
+                    {
+                        <div class="col-md-3 d-flex align-items-stretch">
+                            <div class="card mt-1 mb-2 rounded m-auto" style="width: 22rem;">
+                                <img src="~/img/AuthorPhoto/@item.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.AUTHOR_NAME+" "+item.AUTHOR_LASTNAME) Fotoğrafı">
+                                <div class="card-body">
+                                    <p class="card-text baslik">@item.AUTHOR_DESCRIPTION</p>
+                                </div>
+                                <a href="~/Author/TheAuthor/@item.AUTHOR_ID" class="btn btn-primary">@(item.AUTHOR_NAME + " " + item.AUTHOR_LASTNAME)</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div id="link3">
+                <div class="row">
+                    @foreach (var item in Model.MostReaded)
+                    {
+                        <div class="col-md-3 d-flex align-items-stretch">
+                            <div class="card mt-1 mb-2 rounded m-auto" style="width: 22rem;">
+                                <img src="~/img/AuthorPhoto/@item.AUTHOR.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.AUTHOR.AUTHOR_NAME+" "+item.AUTHOR.AUTHOR_LASTNAME) Fotoğrafı">
+                                <div class="card-body">
+                                    <p class="card-text baslik">@item.AUTHOR.AUTHOR_DESCRIPTION</p>
+                                </div>
+                                <a href="~/Author/TheAuthor/@item.AUTHOR.AUTHOR_ID" class="btn btn-primary">@(item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME)</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
 
         </div>
 
     </div>
     <div class="row">
-        @foreach (var item in Model)
-        {
-            <div class="col-md-3 d-flex align-items-stretch" >
-                <div class="card mt-1 mb-2 rounded m-auto" style="width: 22rem;">
-                    <img src="~/img/AuthorPhoto/@item.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.AUTHOR_NAME+" "+item.AUTHOR_LASTNAME) Fotoğrafı">
-                    <div class="card-body">
-                        <p class="card-text baslik">@item.AUTHOR_DESCRIPTION</p>
-                    </div>
-                    <a href="~/Author/TheAuthor/@item.AUTHOR_ID" class="btn btn-primary">@(item.AUTHOR_NAME + " " + item.AUTHOR_LASTNAME)</a>
-                </div>
-            </div>
-        }
+        <div class="col-md-12">
+
+        </div>
+
     </div>
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+
+    </div>
+    <script src="~/Scripts/dBook.js"></script>
 }
 else
 {
