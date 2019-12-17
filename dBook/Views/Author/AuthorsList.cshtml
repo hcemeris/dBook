@@ -1,5 +1,5 @@
-﻿@using dBook.Models
-@model IEnumerable<dBook.Models.Authors>
+﻿@using dBook.ViewModels
+@model AuthorViewModel;
 @{
     ViewBag.Title = "AuthorsList";
 }
@@ -8,26 +8,28 @@
 {
     <div class=row>
         <div class="col-md-12 ">
+
             <div class="maintitle navbar navbar-expand-lg ">
-                <a class="navbar-brand" href="#">Yazarlar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#yazarlar">
+                <p class="navbar-brand" href="#">Kitaplar</p>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#kitaplar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse " id="yazarlar">
+                <div class="collapse navbar-collapse " id="kitaplar">
                     <ul class="menu navbar-nav mr-auto ">
-                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link">En Son Okunanlar</a></li>
-                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link">En Çok Beğenilenler</a></li>
-                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link">En Çok Okunanlar</a></li>
-                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link">Alfabetik</a></li>
+                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#authorAdaGore" role="button" aria-controls="authorAdaGore" id="soneklenen">En Son Eklenenler</a></li>
+                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#authorFavoriSayi" role="button" aria-controls="authorFavoriSayi" id="cokokunan">En Çok Okunanlar</a></li>
+                        <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#authorEnCokOkunan" role="button" aria-controls="authorEnCokOkunan" id="cokokunan">En Çok Okunanlar</a></li>
                     </ul>
                 </div>
             </div>
+
         </div>
+
     </div>
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-md-3 d-flex align-items-stretch">
+            <div class="col-md-3 d-flex align-items-stretch" >
                 <div class="card mt-1 mb-2 rounded m-auto" style="width: 22rem;">
                     <img src="~/img/AuthorPhoto/@item.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.AUTHOR_NAME+" "+item.AUTHOR_LASTNAME) Fotoğrafı">
                     <div class="card-body">

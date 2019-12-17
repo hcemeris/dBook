@@ -16,6 +16,7 @@ namespace dBook.Models
         public string AUTHOR_LASTNAME { get; set; }
         public string AUTHOR_DESCRIPTION { get; set; }
         public string AUTHOR_PHOTO { get; set; }
+        public int FAVORITE_COUNT { get; set; }
 
     }
 }

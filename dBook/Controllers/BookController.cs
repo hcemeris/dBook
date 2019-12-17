@@ -13,8 +13,16 @@ namespace dBook.Controllers
         dBookContext db = new dBookContext();
         public ActionResult BooksList()
         {
+            var BookListViewModel = new BookListViewModel();
+
             var books = db.Books.Include(x=>x.AUTHOR).Include(k=>k.CATEGORY).ToList();
-            return View(books);
+            var most_read = db.Books.Include(x => x.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(o => o.READ_NUMB).ToList();
+            var last_add = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.BOOK_ID).ToList();
+
+            BookListViewModel.LastAdded = last_add;
+            BookListViewModel.MostReaded = most_read;
+            BookListViewModel.Books = books;
+            return View(BookListViewModel);
         }
         public ActionResult TheBook(int id)
         {

@@ -189,6 +189,7 @@ namespace dBook.Controllers
             var username = User.Identity.Name;
             var user = db.Users.Where(x => x.USERNAME == username).FirstOrDefault();
             FavoriteAuthors new_favorite = new FavoriteAuthors();
+            author.FAVORITE_COUNT++;
             new_favorite.AUTHOR = author;
             new_favorite.USER = user;
             db.FavoriteAuthors.Add(new_favorite);
@@ -200,6 +201,7 @@ namespace dBook.Controllers
             var author = db.Authors.Find(id);
             var user = db.Users.Where(x => x.USERNAME == User.Identity.Name).FirstOrDefault();
             var delete = db.FavoriteAuthors.Include(a => a.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID && x.AUTHOR.AUTHOR_ID == author.AUTHOR_ID).FirstOrDefault();
+            author.FAVORITE_COUNT--;
             db.FavoriteAuthors.Remove(delete);
             db.SaveChanges();
             return RedirectToAction("TheAuthor", "Author", new { id = id });
