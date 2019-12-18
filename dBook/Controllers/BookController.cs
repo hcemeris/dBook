@@ -15,7 +15,7 @@ namespace dBook.Controllers
         {
             var BookListViewModel = new BookListViewModel();
 
-            var books = db.Books.Include(x=>x.AUTHOR).Include(k=>k.CATEGORY).ToList();
+            var books = db.Books.Include(x => x.AUTHOR).Include(k => k.CATEGORY).ToList();
             var most_read = db.Books.Include(x => x.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(o => o.READ_NUMB).ToList();
             var last_add = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.BOOK_ID).ToList();
 
@@ -26,7 +26,7 @@ namespace dBook.Controllers
         }
         public ActionResult TheBook(int id)
         {
-            var theBook = db.Books.Include(a => a.AUTHOR).Include(k => k.CATEGORY).Where(x => x.BOOK_ID == id).FirstOrDefault() ;
+            var theBook = db.Books.Include(a => a.AUTHOR).Include(k => k.CATEGORY).Where(x => x.BOOK_ID == id).FirstOrDefault();
             var auhtor = db.Authors.Find(theBook.AUTHOR.AUTHOR_ID);
             var comments = db.BookComments.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.BOOK.BOOK_ID == id).ToList();
             var username = User.Identity.Name;
@@ -35,7 +35,7 @@ namespace dBook.Controllers
             if (user != null)
             {
                 var isRead = db.ReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == theBook.BOOK_ID && x.USER.USER_ID == user.USER_ID).Count();
-                var isWant = db.WantReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == theBook.BOOK_ID && x.USER.USER_ID== user.USER_ID).Count();
+                var isWant = db.WantReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == theBook.BOOK_ID && x.USER.USER_ID == user.USER_ID).Count();
 
                 BookViewModel BookModel = new BookViewModel();
                 BookModel.Author = auhtor;
@@ -75,16 +75,26 @@ namespace dBook.Controllers
         [HttpPost]
         public ActionResult CommentBook(int id, string _point, string _comment)
         {
-            Books book = db.Books.Find(id);
-            User user = db.Users.Where(x => x.USERNAME == User.Identity.Name).FirstOrDefault();
-            BookComments new_comment = new BookComments();
-            new_comment.BOOK = book;
-            new_comment.USER = user;
-            new_comment.COMMENT = _comment;
-            new_comment.POINT = Convert.ToInt32(_point);
-            db.BookComments.Add(new_comment);
-            db.SaveChanges();
-            return RedirectToAction("BooksList");
+            try
+            {
+                Books book = db.Books.Find(id);
+                User user = db.Users.Where(x => x.USERNAME == User.Identity.Name).FirstOrDefault();
+                BookComments new_comment = new BookComments();
+                new_comment.BOOK = book;
+                new_comment.USER = user;
+                new_comment.COMMENT = _comment;
+                new_comment.POINT = Convert.ToInt32(_point);
+                db.BookComments.Add(new_comment);
+                db.SaveChanges();
+                return RedirectToAction("TheBooks", new { id = book.BOOK_ID });
+
+            }
+            catch (Exception)
+            {
+                return HttpNotFound();
+
+            }
+
         }
     }
 }

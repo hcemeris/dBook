@@ -22,7 +22,7 @@ namespace dBook.Controllers
         [HttpPost]
         public ActionResult Register(string _username, string _password, string _name, string _lastname, HttpPostedFileBase _userphoto)
         {
-            if(db.Users.Where(x=>x.USERNAME.ToLower().Contains(_username.ToLower())).Count() <= 0)
+            if (db.Users.Where(x => x.USERNAME.ToLower().Contains(_username.ToLower())).Count() <= 0)
             {
                 try
                 {
@@ -58,7 +58,7 @@ namespace dBook.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login(string _username,string _password)
+        public ActionResult Login(string _username, string _password, bool rememberBox)
         {
             try
             {
@@ -67,9 +67,20 @@ namespace dBook.Controllers
                 {
                     if (user.PASSWORD == _password)
                     {
-                        FormsAuthentication.SetAuthCookie(_username, false);
+                        var authTicket = new FormsAuthenticationTicket(
+                            1,
+                            user.USERNAME,
+                            DateTime.Now,
+                            DateTime.Now.AddMinutes(20),
+                            rememberBox,
+                            "",
+                            "/"
+                            );
+                        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(authTicket));
+                        Response.Cookies.Add(cookie);
+                        //FormsAuthentication.SetAuthCookie(_username, false);
                         //return RedirectToAction("MyPage","User",new { id= user.USER_ID });
-                        return RedirectToAction("HomePage","Home");
+                        return RedirectToAction("HomePage", "Home");
                     }
                     else
                     {
@@ -120,10 +131,10 @@ namespace dBook.Controllers
 
                 if (current_user.USERNAME == username)
                 {
-                    var user = db.Users.Where(x => x.USERNAME == username).FirstOrDefault() ;
+                    var user = db.Users.Where(x => x.USERNAME == username).FirstOrDefault();
                     UserViewModel userViewModel = new UserViewModel();
                     userViewModel.FavoriteAuthors = db.FavoriteAuthors.Include(u => u.USER).Include(a => a.AUTHOR).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
-                    userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(a=>a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                    userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(a => a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
                     userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(a => a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
                     userViewModel.User = user;
                     return View(userViewModel);
@@ -148,7 +159,7 @@ namespace dBook.Controllers
             book.READ_NUMB++;
             db.ReadBooksLists.Add(new_read);
             db.SaveChanges();
-            return RedirectToAction("TheBook","Book",new { id=id});
+            return RedirectToAction("TheBook", "Book", new { id = id });
         }
         public ActionResult Drop_Readed(int id)
         {
@@ -221,11 +232,11 @@ namespace dBook.Controllers
                     string path = Path.GetFileName(file.FileName);
                     var upload_path = Path.Combine(Server.MapPath("~/img/UserPhoto/"), path);
                     file.SaveAs(upload_path);
-                    user.USER_PHOTO= path;
+                    user.USER_PHOTO = path;
                 }
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("MyPage","User",new { username=user.USERNAME});
+                return RedirectToAction("MyPage", "User", new { username = user.USERNAME });
             }
             return View();
         }
