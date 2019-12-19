@@ -38,6 +38,13 @@ namespace dBook.Controllers
                         _userphoto.SaveAs(upload_path);
                         new_user.USER_PHOTO = photo_path;
                     }
+                    else
+                    {
+                        var photo_path = Path.GetFileName("~/img/DefaultPhoto/default_user.jpeg");
+                        var upload_path = Path.Combine(Server.MapPath("~/img/UserPhoto/"), photo_path);
+                        _userphoto.SaveAs(upload_path);
+                        new_user.USER_PHOTO = photo_path;
+                    }
                     new_user.ROLE = "User";
                     new_user.REGISTER_DATE = DateTime.Now;
                     db.Users.Add(new_user);
