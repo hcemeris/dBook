@@ -23,65 +23,111 @@
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="font-weight-bold">Yorum Yap</h3>
 
-                </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
-                            <form class="form-group ml-5" method="post" action="~/Book/CommentBook/@Model.Book.BOOK_ID">
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect2">Puanınız</label>
+                        <h3 class="font-weight-bold">Yorum Yap</h3>
 
-                                    <select class="form-control" name="_point" id="exampleFormControlSelect2">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <form class="form-group ml-5" method="post" action="~/Book/CommentBook/@Model.Book.BOOK_ID">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect2">Puanınız</label>
 
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Yorumunuz</label>
-                                    <textarea class="form-control" name="_comment" id="exampleFormControlTextarea1" rows="4" style="resize:none"></textarea>
-                                </div>
+                                        <select class="form-control" name="_point" id="exampleFormControlSelect2">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
 
-                                <button type="submit" class="btn btn-primary">Yorum Yap</button> <br /><br />
-                                <div>
-                                    @if (!Model.isRead)
-                                    {
-                                        @Html.ActionLink("Okuduklarıma Ekle", "Add_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right" })
-                                    }
-                                    else
-                                    {
-                                        @Html.ActionLink("Okuduklarımdan Çıkar", "Drop_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right" })
-                                    }
-                                    @if (!Model.isWant)
-                                    {
-                                        @Html.ActionLink("Okuyacaklarıma Ekle", "Add_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right" })
-                                    }
-                                    else
-                                    {
-                                        @Html.ActionLink("Okuyacaklarımdan Çıkar", "Drop_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right" })
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Yorumunuz</label>
+                                        <textarea class="form-control" name="_comment" id="exampleFormControlTextarea1" rows="4" style="resize:none"></textarea>
+                                    </div>
 
-                                    }
-                                </div>
-                            </form>
+                                    <button type="submit" class="btn btn-primary">Yorum Yap</button> <br /><br />
+                                    <div>
+                                        @if (!Model.isRead)
+                                        {
+                                            @Html.ActionLink("Okuduklarıma Ekle", "Add_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Okuduklarımdan Çıkar", "Drop_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right" })
+                                        }
+                                        @if (!Model.isWant)
+                                        {
+                                            @Html.ActionLink("Okuyacaklarıma Ekle", "Add_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Okuyacaklarımdan Çıkar", "Drop_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right" })
+
+                                        }
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
 
                     </div>
 
                 </div>
-                
             </div>
+            <div class="col-md-6 float-right">
+                <div class="row">
+                    <div class="col-md-12">
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="card mt-3" style="width: 65rem;">
+                                <div class="card-body">
+                                    <p class="card-text">@comment.COMMENT</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="float-left">
+                                        Puan : @comment.POINT
+
+                                    </div>
+                                    @if (User.Identity.Name == comment.USER.USERNAME)
+                                    {
+                                        <div class="float-right">
+                                            <p class="card-text">@Html.ActionLink("Yorumu Sil", "DeleteComment", "Book", new { id = comment.BOOK_COMMENT_ID }, new { @class="text-danger"})</p>
+
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="float-right">
+                                            <p class="card-text">@Html.ActionLink(comment.USER.USERNAME, "UserPage", "User", new { id = comment.USER.USER_ID }, null)</p>
+
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        }
+        else
+        {
+    <div class="row">
+        <div class="col-md-6">
+            <p>YORUM YAPMAK İÇİN GİRİŞ YAPIN.</p>
+            
         </div>
-        <div class="col-md-6 float-right">
+        <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="font-weight-bold text-center">YORUMLAR</h3>
@@ -101,10 +147,21 @@
                                     Puan : @comment.POINT
 
                                 </div>
-                                <div class="float-right">
-                                    <p class="card-text">@Html.ActionLink(comment.USER.USERNAME,"UserPage","User",new { id=comment.USER.USER_ID},null)</p>
+                                @if (User.Identity.Name == comment.USER.USERNAME)
+                                {
+                                    <div class="float-right">
+                                        <p class="card-text">@Html.ActionLink("Yorumu Sil", "DeleteComment", "Book", new { id = comment.BOOK_COMMENT_ID }, null)</p>
 
-                                </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="float-right">
+                                        <p class="card-text">@Html.ActionLink(comment.USER.USERNAME, "UserPage", "User", new { id = comment.USER.USER_ID }, null)</p>
+
+                                    </div>
+                                }
+
                             </div>
                         </div>
                     }
@@ -112,6 +169,11 @@
 
             </div>
         </div>
+    </div>
+            
+            
+        }
+
     </div>
 
 

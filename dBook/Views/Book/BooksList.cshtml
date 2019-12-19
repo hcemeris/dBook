@@ -10,69 +10,78 @@
 {
     <div class="container-fluid">
         <div class=row>
-            <div class="col-md-12 ">
-
-                <div class="maintitle navbar navbar-expand-lg ">
-                    <p class="navbar-brand" href="#">Kitaplar</p>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#kitaplar">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse " id="kitaplar">
-                        <ul class="menu navbar-nav mr-auto ">
-                            <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#example1" role="button" aria-controls="example1" id="soneklenen">En Son Eklenenler</a></li>
-                            <li class="over1 nav-item"><a class="btn btn-outline-primary nav-link" href="#example4" role="button" aria-controls="example3" id="cokokunan">En Çok Okunanlar</a></li>
-                        </ul>
+            <div class="col-md-8 ">
+                <div class="row m-auto">
+                    <div class="row text-center w-100 m-auto">
+                        <h2 class="m-auto font-weight-bold">Son Eklenenler</h2>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model.LastAdded)
+                        {
+                            <div class="col-md-4 d-flex align-items-stretch text-center mt-2">
+                                <div class="card mt-1 mb-2 rounded m-auto" style="width: 22rem;">
+                                    <img src="~/img/BookPhoto/@item.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.BOOK_NAME) Fotoğrafı">
+                                    <div class="card-body">
+                                        <p class="card-text baslik">@item.BOOK_DESCRIPTION</p>
+                                    </div>
+                                    <a href="~/Book/TheBook/@item.BOOK_ID" class="btn btn-primary">@(item.BOOK_NAME)</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="row m-auto">
+                    <div class="row text-center w-100 m-auto">
+                        <h2 class="m-auto font-weight-bold">En Çok Okunanlar</h2>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model.MostReaded)
+                        {
+                            <div class="col-md-4 d-flex align-items-stretch text-center mt-2">
+                                <div class="card mt-1 mb-2 rounded m-auto" style="width: 22rem;">
+                                    <img src="~/img/BookPhoto/@item.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.BOOK_NAME) Fotoğrafı">
+                                    <div class="card-body">
+                                        <p class="card-text baslik">@item.BOOK_DESCRIPTION</p>
+                                    </div>
+                                    <a href="~/Book/TheBook/@item.BOOK_ID" class="btn btn-primary">@(item.BOOK_NAME)</a>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
 
             </div>
-
-        </div>
-
-        <div class="col-md-12">
-        
-            <div id="example1">
+            @*Arama*@
+            <div class="col-md-4">
                 <div class="row">
-                    @foreach (var item in Model.LastAdded)
-                    {
-                        <div class="col-md-3 d-flex align-items-stretch">
-                            <div class="card m-auto mt-2 rounded" style="width: 22rem; ">
-                                <img src="~/img/BookPhoto/@item.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@item.BOOK_NAME Fotoğrafı">
-                                <div class="card-body ">
-                                    <h5 class="card-title font-weight-bold text-center "><a href="~/Book/TheBook/@item.BOOK_ID">@item.BOOK_NAME</a></h5>
-                                    <p class="card-text baslik ">@item.BOOK_DESCRIPTION</p>
-
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item font-weight-bold">@(item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME)</li>
-                                </ul>
+                    <div class="col-md-12">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="book_name">Kitap Adı</label>
+                                <input type="text" class="form-control" id="book_name" name="search" aria-describedby="Kitap Adı">
                             </div>
-                        </div>
-                    }
+                            <button type="submit" class="btn btn-primary">Kitap Ara</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list-group">
+                            @foreach (var item in Model.Books)
+                            {
+                                <li class="list-group-item">
+                                    @(item.BOOK_NAME)
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div id="example4">
-                <div class="row">
-                    @foreach (var item in Model.MostReaded)
-                    {
-                        <div class="col-3 d-flex align-items-stretch">
-                            <div class="card m-auto mt-2 rounded" style="width:22rem;">
-                                <img src="~/img/BookPhoto/@item.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@item.BOOK_NAME Fotoğrafı">
-                                <div class="card-body ">
-                                    <h5 class="card-title font-weight-bold text-center "><a href="~/Book/TheBook/@item.BOOK_ID">@item.BOOK_NAME</a></h5>
-                                    <p class="card-text baslik ">@item.BOOK_DESCRIPTION</p>
 
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item font-weight-bold">@(item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME)</li>
-                                </ul>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
         </div>
     </div>
+
     <script src="~/Scripts/dBook.js"></script>
 
 }

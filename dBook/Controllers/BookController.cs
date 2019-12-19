@@ -24,6 +24,20 @@ namespace dBook.Controllers
             BookListViewModel.Books = books;
             return View(BookListViewModel);
         }
+        [HttpPost]
+        public ActionResult BooksList(string search)
+        {
+            var BookListViewModel = new BookListViewModel();
+
+            var books = db.Books.Include(x => x.AUTHOR).Include(k => k.CATEGORY).Where(n=>n.BOOK_NAME.Contains(search)).ToList();
+            var most_read = db.Books.Include(x => x.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(o => o.READ_NUMB).ToList();
+            var last_add = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.BOOK_ID).ToList();
+
+            BookListViewModel.LastAdded = last_add;
+            BookListViewModel.MostReaded = most_read;
+            BookListViewModel.Books = books;
+            return View(BookListViewModel);
+        }
         public ActionResult TheBook(int id)
         {
             var theBook = db.Books.Include(a => a.AUTHOR).Include(k => k.CATEGORY).Where(x => x.BOOK_ID == id).FirstOrDefault();
@@ -86,7 +100,7 @@ namespace dBook.Controllers
                 new_comment.POINT = Convert.ToInt32(_point);
                 db.BookComments.Add(new_comment);
                 db.SaveChanges();
-                return RedirectToAction("TheBooks", new { id = book.BOOK_ID });
+                return RedirectToAction("TheBook","Book", new { id = book.BOOK_ID });
 
             }
             catch (Exception)
@@ -95,6 +109,21 @@ namespace dBook.Controllers
 
             }
 
+        }
+        public ActionResult DeleteComment(int id)
+        {
+            try
+            {
+                var comment = db.BookComments.Include(b => b.BOOK).Where(x => x.BOOK_COMMENT_ID == id).FirstOrDefault();
+                var book = db.Books.Find(comment.BOOK.BOOK_ID);
+                db.BookComments.Remove(comment);
+                db.SaveChanges();
+                return RedirectToAction("TheBook","Book", new { id = book.BOOK_ID});
+            }
+            catch (Exception)
+            {
+                return HttpNotFound();
+            }
         }
     }
 }

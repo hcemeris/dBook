@@ -114,13 +114,13 @@
                                 @if (comment.USER.USERNAME == User.Identity.Name)
                                 {
                                     <div class="float-right">
-                                        <p class="card-text text-danger">Yorumumu sil</p>
+                                        @Html.ActionLink("Yorumu Sil", "DeleteComment", "Author", new { id = comment.AUTHOR_COMMENT_ID }, new { @class = "card-text text-danger" })
                                     </div>
                                 }
                                 else
                                 {
                                     <div class="float-right">
-                                        <p class="card-text">Ad-Soyad : @(comment.USER.NAME + " " + comment.USER.LAST_NAME)</p>
+                                        <p class="card-text">@Html.ActionLink(comment.USER.USERNAME, "UserPage", "User", new { id = comment.USER.USER_ID }, null)</p>
                                     </div>
                                 }
                             </div>

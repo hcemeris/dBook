@@ -49,9 +49,34 @@
                 </div>
             </div>
         </div>
+        @*Arama*@
         <div class="col-md-4">
-            @*Arama*@
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="author_name">Yazar Adı</label>
+                            <input type="text" class="form-control" id="author_name" name="search" aria-describedby="Yazar Adı">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Yazar Ara</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        @foreach (var item in Model.Authors)
+                        {
+                            <li class="list-group-item">
+                                @(item.AUTHOR_NAME+" "+item.AUTHOR_LASTNAME)
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
         </div>
+        
     </div>
     <script src="~/Scripts/dBook.js"></script>
 }

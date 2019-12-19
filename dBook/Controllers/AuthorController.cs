@@ -21,6 +21,22 @@ namespace dBook.Controllers
             AuthorViewModel.MostFavorite = most_favorite;
             var most_readed = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.READ_NUMB).ToList();
             AuthorViewModel.MostReaded = most_readed;
+            AuthorViewModel.Authors = db.Authors.ToList();
+            return View(AuthorViewModel);
+        }
+        [HttpPost]
+        public ActionResult AuthorsList(string search)
+        {
+            var AuthorViewModel = new AuthorListViewModel();
+
+            var authors_ordername = db.Authors.OrderBy(x => x.AUTHOR_NAME).ToList();
+            AuthorViewModel.OrderName = authors_ordername;
+            var most_favorite = db.Authors.OrderByDescending(x => x.FAVORITE_COUNT).ToList();
+            AuthorViewModel.MostFavorite = most_favorite;
+            var most_readed = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.READ_NUMB).ToList();
+            AuthorViewModel.MostReaded = most_readed;
+            var authors = db.Authors.Where(x => x.AUTHOR_NAME.Contains(search) || x.AUTHOR_LASTNAME.Contains(search)).ToList();
+            AuthorViewModel.Authors = authors;
             return View(AuthorViewModel);
         }
         public ActionResult TheAuthor(int id)
@@ -79,6 +95,20 @@ namespace dBook.Controllers
                 return HttpNotFound();
             }
         }
-
+        public ActionResult DeleteComment(int id)
+        {
+            try
+            {
+                var comment = db.AuthorComments.Include(a=>a.AUTHOR).Where(x=>x.AUTHOR_COMMENT_ID==id).FirstOrDefault();
+                var author = db.Authors.Where(x => x.AUTHOR_ID == comment.AUTHOR.AUTHOR_ID).FirstOrDefault();
+                db.AuthorComments.Remove(comment);
+                db.SaveChanges();
+                return RedirectToAction("TheAuthor",new { id=author.AUTHOR_ID});
+            }
+            catch (Exception)
+            {
+                return HttpNotFound();
+            }
+        }
     }
 }
