@@ -19,7 +19,7 @@
 <body class="arkaplan">
     @if (User.Identity.IsAuthenticated)
     {
-    <nav class=" navbar navbar-expand-lg navbar-light bg-light fixed-top position-fixed " style="background-color:#fbf2f2">
+    <nav class=" navbar navbar-expand-lg navbar-dark bg-primary fixed-top position-fixed " style="background-color:#faf6f6; border-radius:0;">
 
         <a class="navbar-brand" href="#">dBook</a>
         <button class="navbar-toggler btn-lg" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,19 +29,19 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" style="color:#000000" href="~/Home/HomePage" role="button">Anasayfa <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" style="color:#faf6f6" href="~/Home/HomePage" role="button">Anasayfa <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:#000000" href="~/Book/BooksList" role="button">Kitaplar</a>
+                    <a class="nav-link" style="color:#faf6f6" href="~/Book/BooksList" role="button">Kitaplar</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" style="color:#000000" href="~/Author/AuthorsList" role="button">Yazarlar</a>
+                    <a class="nav-link" style="color:#faf6f6" href="~/Author/AuthorsList" role="button">Yazarlar</a>
                 </li>
 
                 <li class="nav-item dropdown">
                     <div class="dropdown-d">
-                        @Html.ActionLink("Kategoriler", "CategoryResult", "Home", new { @class = "nav-link dropdown-toggle dropbtn" ,@style="color:#000000"})
+                        @Html.ActionLink("Kategoriler", "CategoryResult", "Home", new { @class = "nav-link dropdown-toggle dropbtn" ,@style="color:#ffffff"})
 
                         <div class="dropdown-content dropdown-menu " aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="#">Edebiyat</a>
@@ -60,7 +60,7 @@
             </form>
             <ul class="navbar-nav float-right">
                 <li class="nav-item">
-                    @Html.ActionLink("Profil", "MyPage", "User", new { username = User.Identity.Name }, new { @style = "color:#000000", @class = "nav-link btn btn-outline-success mr-3" })
+                    @Html.ActionLink("Profil", "MyPage", "User", new { username = User.Identity.Name }, new { @style = "color:#ffffff", @class = "nav-link btn btn-dark mr-3" })
                 </li>
                 <li class="nav-item">
                     <a class="nav-link btn btn-outline-secondary bg-danger" href="~/User/Logout" style="color:#faf6f6">Çıkış Yap</a>
@@ -79,7 +79,7 @@
     else
     {
         
-            <nav class=" navbar navbar-expand-lg navbar-light bg-light fixed-top position-fixed " style="border-radius:0;">
+            <nav class=" navbar navbar-expand-lg navbar-dark bg-primary fixed-top position-fixed " style="background-color:#faf6f6; border-radius:0;">
 
                 <a class="navbar-brand" href="#">dBook</a>
                 <button class="navbar-toggler btn-lg" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,19 +89,19 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" style="color:#000000" href="~/Home/Index" role="button">Anasayfa <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" style="color:#faf6f6" href="~/Home/Index" role="button">Anasayfa <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" style="color:#000000" href="~/Book/BooksList" role="button">Kitaplar</a>
+                            <a class="nav-link" style="color:#faf6f6" href="~/Book/BooksList" role="button">Kitaplar</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" style="color:#000000" href="~/Author/AuthorsList" role="button">Yazarlar</a>
+                            <a class="nav-link" style="color:#faf6f6" href="~/Author/AuthorsList" role="button">Yazarlar</a>
                         </li>
 
                         <li class="nav-item dropdown">
                             <div class="dropdown-d">
-                                @Html.ActionLink("Kategoriler", "CategoryResult", "Home",null, new { @class = "nav-link dropdown-toggle dropbtn" ,@style="color:#000000"})
+                                @Html.ActionLink("Kategoriler", "CategoryResult", "Home",null, new { @class = "nav-link dropdown-toggle dropbtn" ,@style="color:#ffffff"})
 
                                 <div class="dropdown-content dropdown-menu " aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="#">Edebiyat</a>

@@ -11,7 +11,7 @@
                 
                     @foreach (var item in Model.Categories)
                     {
-                        <button type="button" class="btn btn-light">@Html.ActionLink(item.NAME, "TheCategory", "Home", new { id = item.CATEGORY_ID }, null) </button>
+                        <button type="button" class="btn btn-light mb-2">@Html.ActionLink(item.NAME, "TheCategory", "Home", new { id = item.CATEGORY_ID }, null) </button>
                     }
                 
 

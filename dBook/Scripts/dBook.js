@@ -1,18 +1,27 @@
 ﻿
     $("#btn1").click(function () {
         $("#collapseExample2").hide();
-    $("#collapseExample3").hide();
-    $("#collapseExample1").show();
+        $("#collapseExample3").hide();
+        $("#collapseExample1").show();
+        $("#collapseExample4").hide();
 });
-                $("#btn2").click(function () {
+    $("#btn2").click(function () {
         $("#collapseExample1").hide();
-    $("#collapseExample3").hide();
-    $("#collapseExample2").show();
+        $("#collapseExample3").hide();
+        $("#collapseExample2").show();
+        $("#collapseExample4").hide();
 });
-                $("#btn3").click(function () {
+    $("#btn3").click(function () {
         $("#collapseExample1").hide();
+        $("#collapseExample4").hide();
+        $("#collapseExample2").hide();
+        $("#collapseExample3").show();
+                });
+$("#btn4").click(function () {
+    $("#collapseExample1").hide();
     $("#collapseExample2").hide();
-    $("#collapseExample3").show();
+    $("#collapseExample3").hide();
+    $("#collapseExample4").show();
 });
 
 $("#soneklenen").click(function () {
