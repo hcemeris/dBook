@@ -158,3 +158,20 @@ html, body {
 .btn btn-success:active{
     color:red;
 }
+
+.cizgi {
+    position: relative;
+    text-align: center;
+}
+.cizgi hr {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    right: 0;
+}
+.cizgi .yazi {
+    background: #fff;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+}
