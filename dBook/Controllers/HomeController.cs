@@ -17,7 +17,7 @@ namespace dBook.Controllers
         }
         public ActionResult HomePage()
         {
-            var books = db.Books.ToList().OrderBy(x => x.BOOK_ID);
+            var books = db.Books.ToList().OrderBy(x => x.BOOK_ID).Take(8);
             return View(books);
         }
         public ActionResult CategoryResult()

@@ -21,7 +21,7 @@ namespace dBook.Controllers
         public ActionResult BooksControl(int? PageNo)
         {
             int _pageNo = PageNo ?? 1;
-            var books = db.Books.OrderBy(x => x.BOOK_ID).ToPagedList<Books>(_pageNo, 1);
+            var books = db.Books.OrderBy(x => x.BOOK_ID).ToPagedList<Books>(_pageNo, 5);
             return View(books);
         }
         public ActionResult CreateBook()

@@ -49,7 +49,7 @@ namespace dBook.Controllers
                     new_user.REGISTER_DATE = DateTime.Now;
                     db.Users.Add(new_user);
                     db.SaveChanges();
-                    return RedirectToAction("Login", "Home");
+                    return RedirectToAction("HomePage", "Home");
                 }
                 catch (Exception)
                 {

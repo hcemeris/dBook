@@ -1,7 +1,7 @@
 ﻿@using dBook.ViewModels
 @model dBook.ViewModels.AuthorViewModel
 @{
-    ViewBag.Title = "TheAuthor";
+    ViewBag.Title = "Yazar";
 }
 
 @if (Model != null)
@@ -18,6 +18,18 @@
                             <h5 class="card-title">@(Model.Author.AUTHOR_NAME + " " + Model.Author.AUTHOR_LASTNAME)</h5>
                             <p class="card-text">@Model.Author.AUTHOR_DESCRIPTION</p>
                             <p class="card-text"><small class="text-black">Kitap sayısı :@Model.Books.Count</small></p>
+                            <div class="col-md-12 fixed-bottom">
+                                @if (!Model.isFavorite)
+                                {
+                                    @Html.ActionLink("Favori Yazarlarıma Ekle", "AddFavorite", "User", new { id = Model.Author.AUTHOR_ID }, new { @class = "btn btn-primary" })
+
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Favorilerden Çıkar", "DropFavorite", "User", new { id = Model.Author.AUTHOR_ID }, new { @class = "btn btn-danger" })
+
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -26,7 +38,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <h3 class="font-weight-bold text-center">KİTAPLARI</h3>
             <ul class="list-group">
                 @foreach (var book in Model.Books)
@@ -35,7 +47,7 @@
                 }
             </ul>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
 
             @if (User.Identity.IsAuthenticated)
             {
@@ -68,16 +80,7 @@
                             <button type="submit" class="btn btn-primary">Yorum Yap</button><br /><br />
 
                             <div>
-                                @if (!Model.isFavorite)
-                                {
-                                    @Html.ActionLink("Favori Yazarlarıma Ekle", "AddFavorite", "User", new { id = Model.Author.AUTHOR_ID }, new { @class = "btn btn-primary" })
-
-                                }
-                                else
-                                {
-                                    @Html.ActionLink("Favorilerden Çıkar", "DropFavorite", "User", new { id = Model.Author.AUTHOR_ID }, new { @class = "btn btn-danger" })
-
-                                }
+                                
                             </div>
 
 

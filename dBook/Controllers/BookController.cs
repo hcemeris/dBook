@@ -15,9 +15,9 @@ namespace dBook.Controllers
         {
             var BookListViewModel = new BookListViewModel();
 
-            var books = db.Books.Include(x => x.AUTHOR).Include(k => k.CATEGORY).ToList();
-            var most_read = db.Books.Include(x => x.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(o => o.READ_NUMB).ToList();
-            var last_add = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.BOOK_ID).ToList();
+            var books = db.Books.Include(x => x.AUTHOR).Include(k => k.CATEGORY).Take(10).ToList();
+            var most_read = db.Books.Include(x => x.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(o => o.READ_NUMB).Take(6).ToList();
+            var last_add = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.BOOK_ID).Take(6).ToList();
 
             BookListViewModel.LastAdded = last_add;
             BookListViewModel.MostReaded = most_read;
@@ -30,8 +30,8 @@ namespace dBook.Controllers
             var BookListViewModel = new BookListViewModel();
 
             var books = db.Books.Include(x => x.AUTHOR).Include(k => k.CATEGORY).Where(n=>n.BOOK_NAME.Contains(search)).ToList();
-            var most_read = db.Books.Include(x => x.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(o => o.READ_NUMB).ToList();
-            var last_add = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.BOOK_ID).ToList();
+            var most_read = db.Books.Include(x => x.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(o => o.READ_NUMB).Take(6).ToList();
+            var last_add = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.BOOK_ID).Take(6).ToList();
 
             BookListViewModel.LastAdded = last_add;
             BookListViewModel.MostReaded = most_read;

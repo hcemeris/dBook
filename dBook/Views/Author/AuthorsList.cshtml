@@ -1,7 +1,7 @@
 ﻿@using dBook.ViewModels
 @model AuthorListViewModel
 @{
-    ViewBag.Title = "AuthorsList";
+    ViewBag.Title = "Yazarlar";
 }
 
 @if (Model != null)
@@ -11,7 +11,7 @@
 
             <div class="row m-auto">
                 <div class="row text-center w-100 m-auto mb-5">
-                    <h2 class="m-auto font-weight-bold">Favori Yazarlar</h2>
+                    <h2 class="m-auto font-weight-bold">Son Eklenen Yazarlar</h2>
                 </div>
                 <div class="row">
                     @foreach (var item in Model.MostFavorite)

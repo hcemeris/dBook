@@ -17,11 +17,11 @@ namespace dBook.Controllers
 
             var authors_ordername = db.Authors.OrderBy(x => x.AUTHOR_NAME).ToList();
             AuthorViewModel.OrderName = authors_ordername;
-            var most_favorite = db.Authors.OrderByDescending(x => x.FAVORITE_COUNT).ToList();
+            var most_favorite = db.Authors.OrderByDescending(x => x.FAVORITE_COUNT).Take(6).ToList();
             AuthorViewModel.MostFavorite = most_favorite;
-            var most_readed = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.READ_NUMB).ToList();
+            var most_readed = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.READ_NUMB).Take(6).ToList();
             AuthorViewModel.MostReaded = most_readed;
-            AuthorViewModel.Authors = db.Authors.ToList();
+            AuthorViewModel.Authors = db.Authors.Take(10).ToList();
             return View(AuthorViewModel);
         }
         [HttpPost]
@@ -31,9 +31,9 @@ namespace dBook.Controllers
 
             var authors_ordername = db.Authors.OrderBy(x => x.AUTHOR_NAME).ToList();
             AuthorViewModel.OrderName = authors_ordername;
-            var most_favorite = db.Authors.OrderByDescending(x => x.FAVORITE_COUNT).ToList();
+            var most_favorite = db.Authors.OrderByDescending(x => x.FAVORITE_COUNT).Take(6).ToList();
             AuthorViewModel.MostFavorite = most_favorite;
-            var most_readed = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.READ_NUMB).ToList();
+            var most_readed = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.READ_NUMB).Take(6).ToList();
             AuthorViewModel.MostReaded = most_readed;
             var authors = db.Authors.Where(x => x.AUTHOR_NAME.Contains(search) || x.AUTHOR_LASTNAME.Contains(search)).ToList();
             AuthorViewModel.Authors = authors;

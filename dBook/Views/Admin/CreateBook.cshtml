@@ -1,7 +1,7 @@
 ﻿@model dBook.Models.Books
 
 @{
-    ViewBag.Title = "CreateBook";
+    ViewBag.Title = "Kitap Oluştur";
 }
     <div class="row">
         <div class="col-12 col-md-12">
@@ -50,17 +50,10 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Oluştur" class="btn btn-primary" />
+                            <input type="submit" value="Oluştur" class="btn btn-default" />
                         </div>
                     </div>
                 </div>
             }
-
-            <div class="row">
-                <div class="col-12 col-md-12 text-center">
-                    @Html.ActionLink("Listeye Geri dön", "BooksControl",null,new { @class="btn btn-primary h3"})
-
-                </div>
-            </div>
         </div>
     </div>

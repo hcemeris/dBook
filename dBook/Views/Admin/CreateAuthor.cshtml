@@ -1,59 +1,60 @@
 ﻿@model dBook.Models.Authors
 
 @{
-    ViewBag.Title = "CreateAuthor";
+    ViewBag.Title = "Yazar Oluştur";
 }
 
-<h2>CreateAuthor</h2>
 
-@using (Html.BeginForm("CreateAuthor","Admin",FormMethod.Post,new { enctype="multipart/form-data"}))
-{
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Authors</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.AUTHOR_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AUTHOR_NAME, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.AUTHOR_NAME, "", new { @class = "text-danger" })
-        </div>
+<div class="row">
+    <div class="col-12 col-md-12">
+        @using (Html.BeginForm("CreateAuthor", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h3 class="font-weight-bold text-center">Yeni Yazar</h3>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <p class="control-label col-md-2 font-weight-bold">YAZAR ADI</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AUTHOR_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AUTHOR_NAME, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="control-label col-md-2 font-weight-bold">YAZAR SOYADI</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AUTHOR_LASTNAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AUTHOR_LASTNAME, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="control-label col-md-2 font-weight-bold">AÇIKLAMA</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AUTHOR_DESCRIPTION, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AUTHOR_DESCRIPTION, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="control-label col-md-2 font-weight-bold">Yazar Fotoğrafı</p>
+                    <div class="col-md-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="file" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Yazar Fotoğrafı Seçin</label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.AUTHOR_PHOTO, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Oluştur" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.AUTHOR_LASTNAME, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AUTHOR_LASTNAME, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.AUTHOR_LASTNAME, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.AUTHOR_DESCRIPTION, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AUTHOR_DESCRIPTION, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.AUTHOR_DESCRIPTION, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.AUTHOR_PHOTO, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input type="file" name="file" class="control-label col-md-2 button" />
-            @Html.ValidationMessageFor(model => model.AUTHOR_PHOTO, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
