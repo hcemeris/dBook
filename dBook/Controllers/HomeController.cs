@@ -31,7 +31,7 @@ namespace dBook.Controllers
         public ActionResult TheCategory(int id)
         {
             CategoryBooks categoryBooks = new CategoryBooks();
-            categoryBooks.Books = db.Books.Include(c => c.CATEGORY).Where(x => x.CATEGORY.CATEGORY_ID == id).ToList();
+            categoryBooks.Books = db.Books.Include(a=>a.AUTHOR).Include(c => c.CATEGORY).Where(x => x.CATEGORY.CATEGORY_ID == id).ToList();
             categoryBooks.Category = db.Categories.Find(id);
             return View(categoryBooks);
         }

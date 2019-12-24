@@ -4,136 +4,151 @@
     ViewBag.Title = "Yazar";
 }
 
-@if (Model != null)
-{
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card mb-3 text-black" style="width:100%;height:auto;">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="~/img/AuthorPhoto/@Model.Author.AUTHOR_PHOTO" class="card-img img-fluid" style="height:300px; width:100%; border-radius:8px;" alt="@(Model.Author.AUTHOR_NAME+" "+Model.Author.AUTHOR_LASTNAME) Fotoğrafı">
-                    </div>
-                    <div class="col-md-9" style="background-color:#ffffff; border-radius:8px;">
-                        <div class="card-body">
-                            <h5 class="card-title">@(Model.Author.AUTHOR_NAME + " " + Model.Author.AUTHOR_LASTNAME)</h5>
-                            <p class="card-text">@Model.Author.AUTHOR_DESCRIPTION</p>
-                            <p class="card-text"><small class="text-black">Kitap sayısı :@Model.Books.Count</small></p>
-                            <div class="col-md-12 fixed-bottom">
-                                @if (!Model.isFavorite)
-                                {
-                                    @Html.ActionLink("Favori Yazarlarıma Ekle", "AddFavorite", "User", new { id = Model.Author.AUTHOR_ID }, new { @class = "btn btn-primary" })
-
-                                }
-                                else
-                                {
-                                    @Html.ActionLink("Favorilerden Çıkar", "DropFavorite", "User", new { id = Model.Author.AUTHOR_ID }, new { @class = "btn btn-danger" })
-
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h3 class="font-weight-bold text-center">KİTAPLARI</h3>
-            <ul class="list-group">
-                @foreach (var book in Model.Books)
-                {
-                    <li class="list-group-item list-group-item-secondary">@book.BOOK_NAME</li>
-                }
-            </ul>
-        </div>
-        <div class="col-md-8">
-
-            @if (User.Identity.IsAuthenticated)
-            {
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="font-weight-bold text-center">Yorum Yap</h3>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <form class="form-group ml-5" method="post" action="~/Author/CommentAuthor/@Model.Author.AUTHOR_ID">
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect2">Puanınız</label>
-
-                                <select class="form-control" name="_point" id="exampleFormControlSelect2">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Yorumunuz</label>
-                                <textarea class="form-control" name="_comment" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Yorum Yap</button><br /><br />
-
-                            <div>
-                                
-                            </div>
-
-
-
-
-                        </form>
-                    </div>
-
-                </div>
-            }
-            else
-            {
-                <p>Yazarı favorileriniz arasına eklemek için yada yorum yapmak için giriş yapın :)</p>
-            }
+<div class="row">
+    <div class="col-md-12">
+        @if (Model != null)
+        {
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="font-weight-bold text-center">YORUMLAR</h3>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    @foreach (var comment in Model.AuthorComments)
-                    {
-                        <div class="card mt-3" style="width: 65rem;">
-                            <div class="card-body">
-                                <p class="card-text">Yorum : @comment.COMMENT</p>
+                    <div class="card mb-3 text-black" style="width:100%;height:auto;">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="~/img/AuthorPhoto/@Model.Author.AUTHOR_PHOTO" class="card-img img-fluid" style="height:300px; width:100%; border-radius:8px;" alt="@(Model.Author.AUTHOR_NAME+" "+Model.Author.AUTHOR_LASTNAME) Fotoğrafı">
                             </div>
-                            <div class="card-footer">
-                                <div class="float-left">
-                                    Puan : @comment.POINT
+                            <div class="col-md-9" style="background-color:#ffffff; border-radius:8px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">@(Model.Author.AUTHOR_NAME + " " + Model.Author.AUTHOR_LASTNAME)</h5>
+                                    <p class="card-text">@Model.Author.AUTHOR_DESCRIPTION</p>
+                                    <p class="card-text"><small class="text-black">Kitap sayısı :@Model.Books.Count</small></p>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <div class="col-md-12 fixed-bottom">
+                                            @if (!Model.isFavorite)
+                                            {
+                                                @Html.ActionLink("Favori Yazarlarıma Ekle", "AddFavorite", "User", new { id = Model.Author.AUTHOR_ID }, new { @class = "btn btn-primary m-auto" })
+
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Favorilerden Çıkar", "DropFavorite", "User", new { id = Model.Author.AUTHOR_ID }, new { @class = "btn btn-danger m-auto" })
+
+                                            }
+                                        </div>
+                                    }
 
                                 </div>
-                                @if (comment.USER.USERNAME == User.Identity.Name)
-                                {
-                                    <div class="float-right">
-                                        @Html.ActionLink("Yorumu Sil", "DeleteComment", "Author", new { id = comment.AUTHOR_COMMENT_ID }, new { @class = "card-text text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="font-weight-bold text-center">KİTAPLARI</h3>
+                    <ul class="list-group">
+                        @foreach (var book in Model.Books)
+                        {
+                            <li class="list-group-item list-group-item-secondary">@book.BOOK_NAME</li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-md-8 ">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="font-weight-bold text-center">Yorum Yap</h3>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="form-group ml-5" method="post" action="~/Author/CommentAuthor/@Model.Author.AUTHOR_ID">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect2">Puanınız</label>
+
+                                        <select class="form-control" name="_point" id="exampleFormControlSelect2">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
                                     </div>
-                                }
-                                else
+
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Yorumunuz</label>
+                                        <textarea class="form-control" name="_comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Yorum Yap</button><br /><br />
+
+                                    <div>
+
+                                    </div>
+
+
+
+
+                                </form>
+                            </div>
+
+                        </div>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="font-weight-bold text-center">YORUMLAR</h3>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                @foreach (var comment in Model.AuthorComments)
                                 {
-                                    <div class="float-right">
-                                        <p class="card-text">@Html.ActionLink(comment.USER.USERNAME, "UserPage", "User", new { id = comment.USER.USER_ID }, null)</p>
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <p class="card-text">Yorum : @comment.COMMENT</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="float-left">
+                                                Puan : @comment.POINT
+
+                                            </div>
+                                            @if (comment.USER.USERNAME == User.Identity.Name)
+                                            {
+                                                <div class="float-right">
+                                                    @Html.ActionLink("Yorumu Sil", "DeleteComment", "Author", new { id = comment.AUTHOR_COMMENT_ID }, new { @class = "card-text text-danger" })
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="float-right">
+                                                    <p class="card-text">@Html.ActionLink(comment.USER.USERNAME, "UserPage", "User", new { id = comment.USER.USER_ID }, null)</p>
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                 }
                             </div>
+
                         </div>
                     }
-                </div>
+                    else
+                    {
+                        <p class="font-weight-bold h3">
+                            Yorum yapmak ve yorumları görmek için giriş yapın.
+                        </p>
+                    }
 
+
+                </div>
             </div>
 
-        </div>
-    </div>
+        }
 
-}
+    </div>
+</div>

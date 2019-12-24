@@ -26,6 +26,8 @@ namespace dBook.Controllers
         }
         public ActionResult CreateBook()
         {
+            var categories = db.Categories.ToList();
+            ViewBag.category = new SelectList(categories, "CATEGORY_ID", "NAME");
             var authors = db.Authors.ToList();
             ViewBag.authors = new SelectList(authors, "AUTHOR_ID", "AUTHOR_NAME");
             return View();
@@ -35,9 +37,13 @@ namespace dBook.Controllers
         {
             var authors = db.Authors.ToList();
             ViewBag.authors = new SelectList(authors, "AUTHOR_ID", "AUTHOR_NAME");
+            var categories = db.Categories.ToList();
+            ViewBag.category = new SelectList(categories, "CATEGORY_ID", "NAME");
 
+            var category = db.Categories.Find(book.CATEGORY.CATEGORY_ID);
             var author = db.Authors.Find(book.AUTHOR.AUTHOR_ID);
             book.AUTHOR = author;
+            book.CATEGORY = category;
             if (file != null && file.ContentLength > 0)
             {
                 string path = Path.GetFileName(file.FileName);
