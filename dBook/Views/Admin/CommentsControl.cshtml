@@ -1,7 +1,63 @@
-﻿
+﻿@using dBook.ViewModels
+@model CommentsViewModel
 @{
     ViewBag.Title = "CommentsControl";
 }
 
-<h2>CommentsControl</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold">Kitap Yorumları</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Kitap Adı</th>
+                            <th scope="col">Üye</th>
+                            <th scope="col">Yorum</th>
+                            <th scope="col">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.BooksComments)
+                        {
+                            <tr>
+                                <td>@item.BOOK.BOOK_NAME</td>
+                                <td>@item.USER.USERNAME</td>
+                                <td>@item.COMMENT</td>
+                                <td>@Html.ActionLink("Yorumu Sil", "DeleteComment_Book", new { id = item.BOOK_COMMENT_ID }, new { @class = "text-danger" })</td>
+                            </tr>
+                        }
 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="font-weight-bold">Yazar Yorumları</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Yazar Adı</th>
+                            <th scope="col">Üye</th>
+                            <th scope="col">Yorum</th>
+                            <th scope="col">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.AuthorComments)
+                        {
+                            <tr>
+                                <td>@(item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME)</td>
+                                <td>@item.USER.USERNAME</td>
+                                <td>@item.COMMENT</td>
+                                <td>@Html.ActionLink("Yorumu Sil", "DeleteComment_Author", new { id = item.AUTHOR_COMMENT_ID }, new { @class = "text-danger" })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

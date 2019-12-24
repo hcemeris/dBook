@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
 using dBook.Models;
+using dBook.ViewModels;
 namespace dBook.Controllers
 {
     //[Authorize(Roles ="Admin")]
@@ -151,13 +152,84 @@ namespace dBook.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        //ÜYE PANELİ
         public ActionResult UsersControl()
         {
-            return View();
+            return View(db.Users.ToList());
         }
+        public ActionResult DeleteUser(int id)
+        {
+            var user = db.Users.Find(id);
+            var author_comments = db.AuthorComments.Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+            foreach (var item in author_comments)
+            {
+                db.AuthorComments.Remove(item);
+            }
+            var book_comments = db.BookComments.Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+            foreach(var item in book_comments)
+            {
+                db.BookComments.Remove(item);
+            }
+            var read_booklist = db.ReadBooksLists.Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+            foreach(var item in read_booklist)
+            {
+                db.ReadBooksLists.Remove(item);
+            }
+            var want_booklist = db.WantReadBooksLists.Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+            foreach (var item in want_booklist)
+            {
+                db.WantReadBooksLists.Remove(item);
+            }
+            var favorite_authors = db.FavoriteAuthors.Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+            foreach (var item in favorite_authors)
+            {
+                db.FavoriteAuthors.Remove(item);
+            }
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("UsersControl","Admin");
+        }
+        public ActionResult ChangeRole(int id)
+        {
+            var user = db.Users.Find(id);
+            if(user.ROLE == "Admin")
+            {
+                user.ROLE = "User";
+            }else if (user.ROLE == "User")
+            {
+                user.ROLE = "Admin";
+            }
+            db.SaveChanges();
+            return RedirectToAction("UsersControl", "Admin");
+        }
+
         public ActionResult CommentsControl()
         {
-            return View();
+            CommentsViewModel cvm = new CommentsViewModel();
+
+            var bookComments = db.BookComments.Include(b => b.BOOK).Include(u => u.USER).ToList();
+            var authorComments = db.AuthorComments.Include(a => a.AUTHOR).Include(u => u.USER).ToList();
+            cvm.AuthorComments = authorComments;
+            cvm.BooksComments = bookComments;
+            return View(cvm);
+        }
+        public ActionResult DeleteComment_Book(int id)
+        {
+            var comment = db.BookComments.Find(id);
+            db.BookComments.Remove(comment);
+            db.SaveChanges();
+            return RedirectToAction("CommentsControl", "Admin");
+        }
+        public ActionResult DeleteComment_Author(int id)
+        {
+            var comment = db.AuthorComments.Find(id);
+            db.AuthorComments.Remove(comment);
+            db.SaveChanges();
+            return RedirectToAction("CommentsControl", "Admin");
+        }
+        public ActionResult CategoryPanel()
+        {
+            return View(db.Categories.ToList());
         }
         public ActionResult CreateCategory()
         {
@@ -169,6 +241,18 @@ namespace dBook.Controllers
             db.Categories.Add(new_category);
             db.SaveChanges();
             return View();
+        }
+        public ActionResult DeleteCategory(int id)
+        {
+            var category = db.Categories.Find(id);
+            var books = db.Books.Include(c => c.CATEGORY).Where(x => x.CATEGORY.CATEGORY_ID == category.CATEGORY_ID).ToList();
+            foreach (var item in books)
+            {
+                db.Books.Remove(item);
+            }
+            db.Categories.Remove(category);
+            db.SaveChanges();
+            return RedirectToAction("CategoryPanel","Admin");
         }
     }
 }

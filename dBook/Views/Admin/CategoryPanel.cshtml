@@ -1,0 +1,31 @@
+﻿@model IEnumerable<dBook.Models.Category>
+
+@{
+    ViewBag.Title = "CategoryPanel";
+}
+
+<h2>CategoryPanel</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kategori Oluştur", "CreateCategory")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Kategori Adı
+        </th>
+        <th>Kategoriyi Sil</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAME)
+        </td>
+        <td>
+            @Html.ActionLink("Kategoriyi Sil", "DeleteCategory", new { id=item.CATEGORY_ID },new { @class = "text-danger" , onclick = "return confirm('Silmek istediğinize emin misiniz ?');" })
+        </td>
+    </tr>
+}
+
+</table>

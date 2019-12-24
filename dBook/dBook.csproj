@@ -196,6 +196,7 @@
     <Compile Include="ViewModels\BookViewModel.cs" />
     <Compile Include="ViewModels\CategoryBooks.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\CommentsViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
@@ -212,8 +213,6 @@
     <Content Include="Views\Home\HomePage.cshtml" />
     <Content Include="Views\Book\TheBook.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\UsersControl.cshtml" />
-    <Content Include="Views\Admin\CommentsControl.cshtml" />
     <Content Include="Views\Author\AuthorsList.cshtml" />
     <Content Include="Views\Author\TheAuthor.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -238,6 +237,9 @@
     <Content Include="Views\Admin\CreateCategory.cshtml" />
     <Content Include="Views\Home\TheCategory.cshtml" />
     <Content Include="Views\User\UserSettings.cshtml" />
+    <Content Include="Views\Admin\UsersControl.cshtml" />
+    <Content Include="Views\Admin\CommentsControl.cshtml" />
+    <Content Include="Views\Admin\CategoryPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

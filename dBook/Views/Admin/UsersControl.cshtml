@@ -1,7 +1,52 @@
-﻿
+﻿@model IEnumerable<dBook.Models.User>
+
 @{
-    ViewBag.Title = "UsersControl";
+    ViewBag.Title = "Üye Kontrol Paneli";
 }
 
-<h2>UsersControl</h2>
 
+<table class="table">
+    <tr>
+        <th>
+            Kullanıcı Adı
+        </th>
+        <th>
+            Adı
+        </th>
+        <th>
+            Soyadı
+        </th>
+        <th>
+            Kayıt Tarihi
+        </th>
+        <th>
+            Yetki
+        </th>
+        <th>İşlemler</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.USERNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LAST_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REGISTER_DATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROLE)
+        </td>
+        <td>
+            @Html.ActionLink("Yetki Değiştir", "ChangeRole", new { id=item.USER_ID },new { @class = "text-danger" , onclick = "return confirm('Emin misiniz ?');" }) |
+            @Html.ActionLink("Delete", "DeleteUser", new { id = item.USER_ID }, new { @class = "text-danger" , onclick = "return confirm('Silmek istediğinize emin misiniz ?');" })
+        </td>
+    </tr>
+}
+
+</table>
