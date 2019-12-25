@@ -24,25 +24,33 @@
                                     <div class="row fix">
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            <div class="col-md-12 fixed-bottom ">
-                                                @if (!Model.isRead)
-                                                {
-                                                    @Html.ActionLink("Okuduklarıma Ekle", "Add_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right m-1" })
-                                                }
-                                                else
-                                                {
-                                                    @Html.ActionLink("Okuduklarımdan Çıkar", "Drop_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right m-1" })
-                                                }
-                                                @if (!Model.isWant)
-                                                {
-                                                    @Html.ActionLink("Okuyacaklarıma Ekle", "Add_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right m-1" })
-                                                }
-                                                else
-                                                {
-                                                    @Html.ActionLink("Okuyacaklarımdan Çıkar", "Drop_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right m-1" })
+                                        <div class="col-md-12 fixed-bottom ">
+                                            @if (!Model.isRead)
+                                            {
+                                                @Html.ActionLink("Okuduklarıma Ekle", "Add_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right m-1" })
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Okuduklarımdan Çıkar", "Drop_Readed", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right m-1" })
+                                            }
+                                            @if (!Model.isWant)
+                                            {
+                                                @Html.ActionLink("Okuyacaklarıma Ekle", "Add_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right m-1" })
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Okuyacaklarımdan Çıkar", "Drop_Wish", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right m-1" })
 
-                                                }
-                                            </div>
+                                            }
+                                            @if (!Model.isLibrary)
+                                            {
+                                                @Html.ActionLink("Kütüphaneme Ekle", "Add_Library", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-primary float-right m-1" })
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Kütüphanemden Çıkar", "Drop_Library", "User", new { id = Model.Book.BOOK_ID }, new { @class = "btn btn-danger float-right m-1" })
+                                            }
+                                        </div>
                                         }
                                     </div>
                                 </div>

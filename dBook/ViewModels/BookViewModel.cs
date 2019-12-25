@@ -12,6 +12,7 @@ namespace dBook.ViewModels
         public Authors Author { get; set; }
         public Boolean isRead { get; set; }
         public Boolean isWant { get; set; }
+        public Boolean isLibrary { get; set; }
 
 
     }

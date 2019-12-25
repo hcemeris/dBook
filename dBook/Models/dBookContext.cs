@@ -21,6 +21,7 @@ namespace dBook.Models
         public DbSet<WantReadBooksList> WantReadBooksLists { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<FavoriteAuthors> FavoriteAuthors { get; set; }
+        public DbSet<MyBooks> MyBooks { get; set; }
 
 
     }

@@ -50,7 +50,7 @@ namespace dBook.Controllers
             {
                 var isRead = db.ReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == theBook.BOOK_ID && x.USER.USER_ID == user.USER_ID).Count();
                 var isWant = db.WantReadBooksLists.Include(u => u.USER).Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == theBook.BOOK_ID && x.USER.USER_ID == user.USER_ID).Count();
-
+                var isLibrary = db.MyBooks.Include(b => b.Book).Include(u => u.User).Where(x=>x.Book.BOOK_ID == theBook.BOOK_ID && x.User.USER_ID == user.USER_ID ).Count();
                 BookViewModel BookModel = new BookViewModel();
                 BookModel.Author = auhtor;
                 BookModel.Book = theBook;
@@ -70,6 +70,14 @@ namespace dBook.Controllers
                 else
                 {
                     BookModel.isWant = false;
+                }
+                if (isLibrary>0)
+                {
+                    BookModel.isLibrary = true;
+                }
+                else
+                {
+                    BookModel.isLibrary = false;
                 }
 
                 return View(BookModel);

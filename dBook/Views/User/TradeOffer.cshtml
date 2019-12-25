@@ -1,0 +1,36 @@
+﻿@using dBook.ViewModels
+@model TradeViewModel
+@{
+    ViewBag.Title = "Takas İsteği Gönder";
+}
+
+<div class="row">
+    <form method="post" action="~/User/TradeOffer/@Model.get_offer_user.USER_ID">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" class="font-weight-bold">@Model.get_offer_user.USERNAME Kitapları</label>
+                <select class="form-control" name="get_book" id="exampleFormControlSelect1">
+                    @foreach (var item in Model.get_offer_books)
+                    {
+                        <option>@item.Book.BOOK_NAME</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="exampleFormControlSelect1" class="font-weight-bold">@Model.send_offer_user.USERNAME Kitapları</label>
+                <select class="form-control" name="send_book" id="exampleFormControlSelect1">
+                    @foreach (var item in Model.send_offer_books)
+                    {
+                        <option>@item.Book.BOOK_NAME</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary ml-4">Takas isteği gönder</button>
+    </form>
+    
+</div>
+

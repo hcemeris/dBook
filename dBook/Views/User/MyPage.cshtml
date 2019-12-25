@@ -11,10 +11,10 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="text-center ">
-                    <img src="~/img/UserPhoto/@Model.User.USER_PHOTO"  style="border-radius:100px; width:200px;height:200px;"><br /><br />
+                    <img src="~/img/UserPhoto/@Model.User.USER_PHOTO" style="border-radius:100px; width:200px;height:200px;"><br /><br />
                     <p class="card-text">@(Model.User.NAME + " " + Model.User.LAST_NAME)</p>
                     <p class="card-text"><small>@(Model.User.REGISTER_DATE.Day + "." + Model.User.REGISTER_DATE.Month + "." + Model.User.REGISTER_DATE.Year) tarihinde katıldı.</small></p>
-                    @Html.ActionLink("Ayarlar","UserSettings","User",new { id=Model.User.USER_ID},new { @class="btn btn-primary btn-sm"})
+                    @Html.ActionLink("Ayarlar", "UserSettings", "User", new { id = Model.User.USER_ID }, new { @class = "btn btn-primary btn-sm" })
 
                 </div>
             </div>
@@ -32,7 +32,7 @@
                         Favori Yazarları
                     </a>
                     <a class="btn btn-success" data-toggle="collapse" href="#collapseExample4" role="button" aria-controls="collapseExample4" id="btn4">
-                        Takaslamak İstediğim Kitaplar
+                        Kütüphanemdeki Kitaplar
                     </a>
 
                 </p>
@@ -62,6 +62,15 @@
                         @foreach (var item in Model.FavoriteAuthors)
                         {
                             <span>@Html.ActionLink((item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME), "TheAuthor", "Author", new { id = item.AUTHOR.AUTHOR_ID }, null)</span>
+                        }
+                    </div>
+                </div>
+                <div class="collapse" id="collapseExample4">
+                    <div class="card card-body">
+                        <h5 class="font-weight-bold">Kütüphanemdeki Kitaplar<br /></h5>
+                        @foreach (var item in Model.MyBooks)
+                        {
+                            <span>@Html.ActionLink(item.Book.BOOK_NAME, "TheBook", "Book", new { id = item.Book.BOOK_ID }, null) - @Html.ActionLink((item.Book.AUTHOR.AUTHOR_NAME + " " + item.Book.AUTHOR.AUTHOR_LASTNAME), "TheAuthor", "Author", new { id = item.Book.AUTHOR.AUTHOR_ID }, null)</span>
                         }
                     </div>
                 </div>

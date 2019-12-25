@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -92,19 +94,21 @@ namespace dBook.Controllers
                     else
                     {
                         ViewBag.error = "Şifre yanlış";
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else
                 {
                     ViewBag.error = "Kayıt bulunamadı";
+                    return RedirectToAction("Index", "Home");
                 }
             }
             catch (Exception)
             {
+                return RedirectToAction("Index", "Home");
 
             }
 
-            return View();
         }
         [Authorize]
         public ActionResult UserPage(int id)
@@ -116,19 +120,14 @@ namespace dBook.Controllers
                 var user = db.Users.Find(id);
                 UserViewModel userViewModel = new UserViewModel();
                 userViewModel.FavoriteAuthors = db.FavoriteAuthors.Include(u => u.USER).Include(a => a.AUTHOR).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
-                userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
-                userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(a => a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(a => a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                userViewModel.MyBooks = db.MyBooks.Include(b => b.Book).Include(a => a.Book.AUTHOR).Include(u => u.User).Where(x => x.User.USER_ID == user.USER_ID).ToList();
                 userViewModel.User = user;
                 return View(userViewModel);
             }
             return View();
         }
-        //public ActionResult UserPage()
-        //{
-
-        //    return View();
-        //}
-        //[Authorize]
         public ActionResult MyPage(string username)
         {
             if (User.Identity.IsAuthenticated)
@@ -143,6 +142,7 @@ namespace dBook.Controllers
                     userViewModel.FavoriteAuthors = db.FavoriteAuthors.Include(u => u.USER).Include(a => a.AUTHOR).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
                     userViewModel.ReadBooksList = db.ReadBooksLists.Include(b => b.BOOK).Include(a => a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
                     userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(a => a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
+                    userViewModel.MyBooks = db.MyBooks.Include(b => b.Book).Include(a => a.Book.AUTHOR).Include(u => u.User).Where(x => x.User.USER_ID == user.USER_ID).ToList();
                     userViewModel.User = user;
                     return View(userViewModel);
                 }
@@ -153,7 +153,25 @@ namespace dBook.Controllers
             }
             else return HttpNotFound();
         }
-
+        public ActionResult Add_Library(int id)
+        {
+            var book = db.Books.Find(id);
+            var user = db.Users.Where(x => x.USERNAME == User.Identity.Name).FirstOrDefault();
+            MyBooks new_add = new MyBooks();
+            new_add.Book = book;
+            new_add.User = user;
+            db.MyBooks.Add(new_add);
+            db.SaveChanges();
+            return RedirectToAction("TheBook", "Book", new { id = book.BOOK_ID });
+        }
+        public ActionResult Drop_Library(int id)
+        {
+            var book = db.Books.Find(id);
+            var mybook = db.MyBooks.Include(b => b.Book).Where(x => x.Book.BOOK_ID == book.BOOK_ID).FirstOrDefault();
+            db.MyBooks.Remove(mybook);
+            db.SaveChanges();
+            return RedirectToAction("TheBook", "Book", new { id = book.BOOK_ID });
+        }
         [Authorize]
         public ActionResult Add_Readed(int id)
         {
@@ -246,6 +264,53 @@ namespace dBook.Controllers
                 return RedirectToAction("MyPage", "User", new { username = user.USERNAME });
             }
             return View();
+        }
+        public ActionResult TradeOffer(int id)
+        {
+            TradeViewModel tvm = new TradeViewModel();
+            var send_user = db.Users.Where(x => x.USERNAME == User.Identity.Name).FirstOrDefault();
+            tvm.get_offer_user = db.Users.Find(id);
+            tvm.send_offer_user = db.Users.Where(x => x.USER_ID == send_user.USER_ID).FirstOrDefault();
+            tvm.get_offer_books = db.MyBooks.Include(u => u.User).Include(b => b.Book).Where(x => x.User.USER_ID == id).ToList();
+            ViewBag.getbooks = db.MyBooks.Include(u => u.User).Include(b => b.Book).Where(x => x.User.USER_ID == id).ToList();
+            tvm.send_offer_books = db.MyBooks.Include(u => u.User).Include(b => b.Book).Where(x => x.User.USER_ID == send_user.USER_ID).ToList();
+            ViewBag.sendbooks = db.MyBooks.Include(u => u.User).Include(b => b.Book).Where(x => x.User.USER_ID == send_user.USER_ID).ToList();
+
+            return View(tvm);
+        }
+        [HttpPost]
+        public ActionResult TradeOffer(int id, string get_book, string send_book)
+        {
+            TradeViewModel tvm = new TradeViewModel();
+            var send_user = db.Users.Where(x => x.USERNAME == User.Identity.Name).FirstOrDefault();
+            tvm.get_offer_user = db.Users.Find(id);
+            tvm.send_offer_user = db.Users.Where(x => x.USER_ID == send_user.USER_ID).FirstOrDefault();
+            tvm.get_offer_books = db.MyBooks.Include(u => u.User).Include(b => b.Book).Where(x => x.User.USER_ID == id).ToList();
+            ViewBag.getbooks = db.MyBooks.Include(u => u.User).Include(b => b.Book).Where(x => x.User.USER_ID == id).ToList();
+            tvm.send_offer_books = db.MyBooks.Include(u => u.User).Include(b => b.Book).Where(x => x.User.USER_ID == send_user.USER_ID).ToList();
+            ViewBag.sendbooks = db.MyBooks.Include(u => u.User).Include(b => b.Book).Where(x => x.User.USER_ID == send_user.USER_ID).ToList();
+
+            var fromAddress = new MailAddress("dbook.info.mail@gmail.com");
+            var toAddress = new MailAddress("dbook.info.mail@gmail.com");
+            const string subject = "dBook | Takas İsteği";
+            using (var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, "dbooksau")
+            })
+            {
+                using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = send_user.USERNAME + " kullanıcısından takas isteği." + get_book + " kitabınız için " + send_book })
+                {
+                    smtp.Send(message);
+                }
+            }
+
+            return RedirectToAction("TradeOffer", "User", new { id = id });
+
         }
         [Authorize]
         public ActionResult Logout()
