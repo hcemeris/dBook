@@ -198,6 +198,7 @@
     <Compile Include="ViewModels\CategoryBooks.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\CommentsViewModel.cs" />
+    <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\TradeViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />

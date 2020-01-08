@@ -11,6 +11,7 @@ namespace dBook.Controllers
     public class BookController : Controller
     {
         dBookContext db = new dBookContext();
+        [AllowAnonymous]
         public ActionResult BooksList()
         {
             var BookListViewModel = new BookListViewModel();

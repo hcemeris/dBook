@@ -11,7 +11,7 @@ using dBook.Models;
 using dBook.ViewModels;
 namespace dBook.Controllers
 {
-    //[Authorize(Roles ="Admin")]
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         dBookContext db = new dBookContext();

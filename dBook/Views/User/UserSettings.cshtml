@@ -1,23 +1,22 @@
 ﻿@model dBook.Models.User
 
 @{
-    ViewBag.Title = "UserSettings";
+    ViewBag.Title = "Ayarlar";
 }
 
-<h2>UserSettings</h2>
+<h2 class="text-center">Ayarlar</h2>
 
 @using (Html.BeginForm("UserSettings", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>User</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.USER_ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.USERNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p class="control-label col-md-2 font-weight-bold">Kullanıcı Adı</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.USERNAME, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.USERNAME, "", new { @class = "text-danger" })
@@ -25,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p class="control-label col-md-2 font-weight-bold">Ad</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
@@ -33,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LAST_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p class="control-label col-md-2 font-weight-bold">Soyad</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
@@ -41,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p class="control-label col-md-2 font-weight-bold">Şifre</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PASSWORD, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PASSWORD, "", new { @class = "text-danger" })
@@ -49,29 +48,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.USER_PHOTO, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p class="control-label col-md-2 font-weight-bold">Fotoğraf</p>
             <div class="col-md-10">
+                @Html.DisplayFor(model => model.USER_PHOTO)
                 <input type="file" name="file" class="control-label col-md-2 button" />
                 @Html.ValidationMessageFor(model => model.USER_PHOTO, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.REGISTER_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.REGISTER_DATE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.REGISTER_DATE, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ROLE, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ROLE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ROLE, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+        @Html.HiddenFor(model=>model.REGISTER_DATE)
+        @Html.HiddenFor(model=>model.ROLE)
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

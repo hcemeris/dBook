@@ -1,5 +1,5 @@
-﻿@using dBook.Models
-@model IEnumerable<dBook.Models.Books>
+﻿@using dBook.ViewModels
+@model HomePageViewModel
 @{
     ViewBag.Title = "HomePage";
 }
@@ -14,9 +14,8 @@
             </div>
         </div>
         <br />
-
         <div class="row">
-            @foreach (var book in Model)
+            @foreach (var book in Model.Last_Added)
             {
                 <div class="col-md-3 mt-2">
                     <div class="card mb-4 m-auto" style="width: 22rem; ">
@@ -41,7 +40,7 @@
 
 
         <div class="row">
-            @foreach (var book in Model)
+            @foreach (var book in Model.Most_Read)
             {
                 <div class="col-md-3">
                     <div class="card mb-4 m-auto" style="width: 22rem; ">
@@ -65,14 +64,14 @@
         <br />
 
         <div class="row">
-            @foreach (var book in Model)
+            @foreach (var author in Model.Most_Favorite)
             {
                 <div class="col-md-3 ">
                     <div class="card mb-4 m-auto " style="width: 22rem; ">
-                        <img src="~/img/BookPhoto/@book.BOOK_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="...">
+                        <img src="~/img/AuthorPhoto/@author.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="...">
                         <div class="card-body">
-                            <h4 class="card-title font-weight-bold">@book.BOOK_NAME</h4>
-                            <p class="card-text baslik">@book.BOOK_DESCRIPTION</p>
+                            <h4 class="card-title font-weight-bold">@(author.AUTHOR_NAME+" "+author.AUTHOR_LASTNAME)</h4>
+                            <p class="card-text baslik">@author.AUTHOR_DESCRIPTION</p>
                         </div>
                     </div>
                 </div>

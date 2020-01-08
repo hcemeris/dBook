@@ -128,6 +128,7 @@ namespace dBook.Controllers
             }
             return View();
         }
+        [Authorize]
         public ActionResult MyPage(string username)
         {
             if (User.Identity.IsAuthenticated)
@@ -153,6 +154,7 @@ namespace dBook.Controllers
             }
             else return HttpNotFound();
         }
+        [Authorize]
         public ActionResult Add_Library(int id)
         {
             var book = db.Books.Find(id);
@@ -164,6 +166,7 @@ namespace dBook.Controllers
             db.SaveChanges();
             return RedirectToAction("TheBook", "Book", new { id = book.BOOK_ID });
         }
+        [Authorize]
         public ActionResult Drop_Library(int id)
         {
             var book = db.Books.Find(id);
@@ -186,6 +189,7 @@ namespace dBook.Controllers
             db.SaveChanges();
             return RedirectToAction("TheBook", "Book", new { id = id });
         }
+        [Authorize]
         public ActionResult Drop_Readed(int id)
         {
             var book = db.Books.Find(id);
@@ -210,6 +214,7 @@ namespace dBook.Controllers
             return RedirectToAction("TheBook", "Book", new { id = id });
         }
 
+        [Authorize]
         public ActionResult Drop_Wish(int id)
         {
             var book = db.Books.Find(id);
@@ -219,6 +224,7 @@ namespace dBook.Controllers
             db.SaveChanges();
             return RedirectToAction("TheBook", "Book", new { id = id });
         }
+        [Authorize]
         public ActionResult AddFavorite(int id)
         {
             var author = db.Authors.Find(id);
@@ -232,6 +238,7 @@ namespace dBook.Controllers
             db.SaveChanges();
             return RedirectToAction("TheAuthor", "Author", new { id = id });
         }
+        [Authorize]
         public ActionResult DropFavorite(int id)
         {
             var author = db.Authors.Find(id);
@@ -242,12 +249,14 @@ namespace dBook.Controllers
             db.SaveChanges();
             return RedirectToAction("TheAuthor", "Author", new { id = id });
         }
+        [Authorize]
         public ActionResult UserSettings(int id)
         {
             var user = db.Users.Find(id);
             return View(user);
         }
         [HttpPost]
+        [Authorize]
         public ActionResult UserSettings(User user, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
@@ -265,6 +274,7 @@ namespace dBook.Controllers
             }
             return View();
         }
+        [Authorize]
         public ActionResult TradeOffer(int id)
         {
             TradeViewModel tvm = new TradeViewModel();
@@ -279,6 +289,7 @@ namespace dBook.Controllers
             return View(tvm);
         }
         [HttpPost]
+        [Authorize]
         public ActionResult TradeOffer(int id, string get_book, string send_book)
         {
             TradeViewModel tvm = new TradeViewModel();

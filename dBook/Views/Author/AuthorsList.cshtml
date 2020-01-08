@@ -14,7 +14,7 @@
                     <h2 class="m-auto font-weight-bold">Son Eklenen Yazarlar</h2>
                 </div>
                 <div class="row">
-                    @foreach (var item in Model.MostFavorite)
+                    @foreach (var item in Model.Last_Added)
                     {
                         <div class="col-md-4 d-flex align-items-stretch text-center mt-2 mb-4">
                             <div class="card mt-1 mb-2 rounded m-auto" style="width: 22rem;">
@@ -38,11 +38,11 @@
                     {
                         <div class="col-md-4 d-flex align-items-stretch text-center mt-2 mb-4">
                             <div class="card mt-1 mb-2 rounded m-auto" style="width: 22rem;">
-                                <img src="~/img/AuthorPhoto/@item.AUTHOR.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.AUTHOR.AUTHOR_NAME+" "+item.AUTHOR.AUTHOR_LASTNAME) Fotoğrafı">
+                                <img src="~/img/AuthorPhoto/@item.AUTHOR_PHOTO" class="card-img-top img-fluid m-auto" style="width:100%;height:300px;" alt="@(item.AUTHOR_NAME+" "+item.AUTHOR_LASTNAME) Fotoğrafı">
                                 <div class="card-body">
-                                    <p class="card-text baslik">@item.AUTHOR.AUTHOR_DESCRIPTION</p>
+                                    <p class="card-text baslik">@item.AUTHOR_DESCRIPTION</p>
                                 </div>
-                                <a href="~/Author/TheAuthor/@item.AUTHOR.AUTHOR_ID" class="btn btn-primary">@(item.AUTHOR.AUTHOR_NAME + " " + item.AUTHOR.AUTHOR_LASTNAME)</a>
+                                <a href="~/Author/TheAuthor/@item.AUTHOR_ID" class="btn btn-primary">@(item.AUTHOR_NAME + " " + item.AUTHOR_LASTNAME)</a>
                             </div>
                         </div>
                     }

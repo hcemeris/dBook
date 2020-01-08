@@ -8,6 +8,7 @@ using dBook.Models;
 using dBook.ViewModels;
 namespace dBook.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         dBookContext db = new dBookContext();
@@ -15,10 +16,14 @@ namespace dBook.Controllers
         {
             return View();
         }
+        [Authorize]
         public ActionResult HomePage()
         {
-            var books = db.Books.ToList().OrderBy(x => x.BOOK_ID).Take(8);
-            return View(books);
+            HomePageViewModel homepagevm = new HomePageViewModel();
+            homepagevm.Last_Added = db.Books.Take(8).ToList();
+            homepagevm.Most_Read = db.Books.OrderByDescending(x => x.READ_NUMB).Take(8).ToList();
+            homepagevm.Most_Favorite = db.Authors.OrderByDescending(x => x.FAVORITE_COUNT).Take(8).ToList();
+            return View(homepagevm);
         }
         public ActionResult CategoryResult()
         {

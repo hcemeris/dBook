@@ -11,15 +11,16 @@ namespace dBook.Controllers
     public class AuthorController : Controller
     {
         dBookContext db = new dBookContext();
+        [AllowAnonymous]
         public ActionResult AuthorsList()
         {
             var AuthorViewModel = new AuthorListViewModel();
 
-            var authors_ordername = db.Authors.OrderBy(x => x.AUTHOR_NAME).ToList();
-            AuthorViewModel.OrderName = authors_ordername;
+            var authors_lastadd = db.Authors.OrderBy(x => x.AUTHOR_ID).Take(6).ToList();
+            AuthorViewModel.Last_Added= authors_lastadd;
             var most_favorite = db.Authors.OrderByDescending(x => x.FAVORITE_COUNT).Take(6).ToList();
             AuthorViewModel.MostFavorite = most_favorite;
-            var most_readed = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.READ_NUMB).Take(6).ToList();
+            var most_readed = db.Authors.OrderByDescending(x=>x.FAVORITE_COUNT).Take(6).ToList();
             AuthorViewModel.MostReaded = most_readed;
             AuthorViewModel.Authors = db.Authors.Take(10).ToList();
             return View(AuthorViewModel);
@@ -29,11 +30,11 @@ namespace dBook.Controllers
         {
             var AuthorViewModel = new AuthorListViewModel();
 
-            var authors_ordername = db.Authors.OrderBy(x => x.AUTHOR_NAME).ToList();
-            AuthorViewModel.OrderName = authors_ordername;
+            var authors_lastadd = db.Authors.OrderBy(x => x.AUTHOR_ID).Take(6).ToList();
+            AuthorViewModel.Last_Added = authors_lastadd;
             var most_favorite = db.Authors.OrderByDescending(x => x.FAVORITE_COUNT).Take(6).ToList();
             AuthorViewModel.MostFavorite = most_favorite;
-            var most_readed = db.Books.Include(a => a.AUTHOR).Include(c => c.CATEGORY).OrderByDescending(x => x.READ_NUMB).Take(6).ToList();
+            var most_readed = db.Authors.OrderByDescending(x=>x.FAVORITE_COUNT).Take(6).ToList();
             AuthorViewModel.MostReaded = most_readed;
             var authors = db.Authors.Where(x => x.AUTHOR_NAME.Contains(search) || x.AUTHOR_LASTNAME.Contains(search)).ToList();
             AuthorViewModel.Authors = authors;
