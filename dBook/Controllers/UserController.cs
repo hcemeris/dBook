@@ -51,7 +51,7 @@ namespace dBook.Controllers
                     new_user.REGISTER_DATE = DateTime.Now;
                     db.Users.Add(new_user);
                     db.SaveChanges();
-                    return RedirectToAction("HomePage", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 catch (Exception)
                 {
