@@ -41,7 +41,7 @@ a {
     padding: 0 10px;
     overflow: hidden; /* taşanları gizle */
     /*white-space: nowrap; alt satıra hiç inme */
-    max-height: 100px;
+    max-height: 82px;
     text-overflow: ellipsis; /* eğer uzunsa üç nokta koy */
 }
 .info{

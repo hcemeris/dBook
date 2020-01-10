@@ -145,6 +145,7 @@ namespace dBook.Controllers
                     userViewModel.WantReadBooksList = db.WantReadBooksLists.Include(b => b.BOOK).Include(a => a.BOOK.AUTHOR).Include(u => u.USER).Where(x => x.USER.USER_ID == user.USER_ID).ToList();
                     userViewModel.MyBooks = db.MyBooks.Include(b => b.Book).Include(a => a.Book.AUTHOR).Include(u => u.User).Where(x => x.User.USER_ID == user.USER_ID).ToList();
                     userViewModel.User = user;
+                    ViewBag.control = user.ROLE;
                     return View(userViewModel);
                 }
                 else

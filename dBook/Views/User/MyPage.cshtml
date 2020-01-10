@@ -15,7 +15,10 @@
                     <p class="card-text">@(Model.User.NAME + " " + Model.User.LAST_NAME)</p>
                     <p class="card-text"><small>@(Model.User.REGISTER_DATE.Day + "." + Model.User.REGISTER_DATE.Month + "." + Model.User.REGISTER_DATE.Year) tarihinde katıldı.</small></p>
                     @Html.ActionLink("Ayarlar", "UserSettings", "User", new { id = Model.User.USER_ID }, new { @class = "btn btn-primary btn-sm" })
-
+                    @if (ViewBag.control == "Admin")
+                    {
+                        @Html.ActionLink("ADMİN PANELİ", "Index", "Admin", new { id = Model.User.USER_ID }, new { @class = "btn btn-primary btn-sm" })
+                    }
                 </div>
             </div>
             <br />
