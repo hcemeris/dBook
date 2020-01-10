@@ -42,7 +42,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Düzenle", "EditBook", new { id = item.BOOK_ID }) |
-                        @Html.ActionLink("Sil", "DeleteBook", new { id = item.BOOK_ID }, new { @class = "text-danger font-weight-bold", onclick = "return confirm('Are you sure you wish to delete this article?');" })
+                        @Html.ActionLink("Sil", "DeleteBook", new { id = item.BOOK_ID }, new { @class = "text-danger font-weight-bold", onclick = "return confirm('Emin misiniz?');" })
                     </td>
                 </tr>
             }

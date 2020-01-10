@@ -86,6 +86,9 @@ namespace dBook.Controllers
                 var read_list = db.ReadBooksLists.Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == id).ToList();
                 var want_list = db.WantReadBooksLists.Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == id).ToList();
                 var comments = db.BookComments.Include(b => b.BOOK).Where(x => x.BOOK.BOOK_ID == id).ToList();
+                var library = db.MyBooks.Include(b => b.Book).Include(u => u.User).Where(x => x.Book.BOOK_ID == id).ToList();
+
+                db.MyBooks.RemoveRange(library);
                 db.ReadBooksLists.RemoveRange(read_list);
                 db.WantReadBooksLists.RemoveRange(want_list);
                 db.BookComments.RemoveRange(comments);
